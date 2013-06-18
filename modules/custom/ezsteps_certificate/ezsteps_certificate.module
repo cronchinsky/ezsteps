@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * Implements ezsteps_menu().
+ */
+function ezsteps_certificate_menu() {
+  $items['complete/%'] = array(
+    'access callback' => 'ezsteps_certificate_is_module_complete',
+    'access arguments' => array(1),
+    'page callback' => 'ezsteps_certificate_complete_page',
+    'page arguments' => array(1),
+    'title' => 'Module Complete!',
+  );
+
+  $items['certificate/%'] = array(
+    'access callback' => 'ezsteps_certificate_is_module_complete',
+    'access arguments' => array(1),
+    'page callback' => 'ezsteps_certificate_print',
+    'page arguments' => array(1),
+    'title' => 'Module Complete!',
+  );
+
+  return $items;
+}
+
+/**
+ * Access control function to check if a user has completed a module.
+ */
+function ezsteps_certificate_is_module_complete($module_num, $uid = NULL) {
+  // If no uid is provided, get the current user's.
+  if (empty($uid)) {
+    global $user;
+    $uid = $user->uid;
+  }
+
+  // Load the module, if it can't be found, access denied.
+  $module = ezsteps_glue_get_module_by_number($module_num);
+  if (empty($module)) {
+    return false;
+  }
+
+  // Pull up a list of flags that the user has on this contnet.
+  $flags = flag_get_user_flags('node', $module->nid, $uid);
+
+  // return true if they have the complete flag, false otherwise.
+  return !empty($flags['module_complete']);
+}
+
+/**
+ * Page callback for the module completed page.
+ * 
+ * @param integer $module_num
+ *   The number of the module the user has completed.
+ */
+function ezsteps_certificate_complete_page($module_num) {
+
+  return theme('ezsteps_complete_page', array(
+        'module_num' => $module_num,
+      ));
+}
+
+/**
+ * Implements hook_theme.
+ * 
+ * Registers the template files for the complete page and the certificate.
+ */
+function ezsteps_certificate_theme() {
+  $theme['ezsteps_complete_page'] = array(
+    'variables' => array(
+      'module_num' => 0,
+    ),
+    'template' => 'templates/ezsteps_complete_page',
+  );
+
+  $theme['ezsteps_certificate'] = array(
+    'variables' => array(
+      'module_num' => 0,
+      'response' => "GO",
+    ),
+    'template' => 'templates/ezsteps_certificate',
+  );
+
+  return $theme;
+}
+
+/**
+ * Page callback for the certificate.
+ * 
+ * @param integer $module_num
+ *   the module number that the user has completed.
+ */
+function ezsteps_certificate_print($module_num) {
+  require_once(drupal_get_path('module', 'ezsteps_certificate') . '/dompdf/dompdf_config.inc.php');
+  $html = theme('ezsteps_certificate', array(
+    'module_num' => $module_num,
+    'response' => ezsteps_quiz_response_get($module_num),
+  ));
+  $dompdf = new DOMPDF();
+  $dompdf->load_html($html);
+  $dompdf->render();
+  $dompdf->stream("sample.pdf");
+  exit;
+}

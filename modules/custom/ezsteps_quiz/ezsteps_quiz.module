@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * Implements hook_node_view().
+ * 
+ * Adds the quiz js to the node.
+ */
+function ezsteps_quiz_node_view($node) {
+  if ($node->type == 'quiz') {
+    drupal_add_js(drupal_get_path('module', 'ezsteps_quiz') . '/js/quiz.js');
+    
+    $form = drupal_get_form('ezsteps_quiz_open_ended_form', $node);
+
+    // We want them all to show up as 'Self Check'
+    $node->content['form'] = array(
+      '#markup' => render($form),
+    );
+  }
+}
+
+function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
+  
+  
+  $form['header'] = array(
+  	'#type' => 'item',
+  	'#markup' => '<p><strong>Go through the word processing skills to review what you have learned:</strong></p>',
+  );
+
+  
+  $i = 0;
+  foreach ($node->field_radio_question_prompt[LANGUAGE_NONE] as $radio_prompt)  {	  
+	  $form['open_ended']['radios'][$i] = array(
+	    '#type' => 'radios',
+	    '#title' => t("Radio Questions"),
+	    '#title_display' => 'invisible',
+	    '#required' => TRUE,
+	    '#prefix' => '<div id="ezsteps-radio-prompt">' . $radio_prompt['value'] . '</div>',
+	    '#options' => array('1' => t('Yes'),'0' => t('Needs Practice')),
+	  );
+	  $i++;	  	
+  }
+
+
+  foreach ($node->field_quiz_open_ended_prompt[LANGUAGE_NONE] as $open_ended_prompt)  {
+	  $form['open_ended']['text'][$i] = array(
+	    '#type' => 'textarea',
+	    '#required' => TRUE,
+	    '#prefix' => '<div id="ezsteps-open-ended-prompt">' . $open_ended_prompt['value'] . '</div>',
+	  );
+	  $i++;	  	
+  }
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+function ezsteps_quiz_open_ended_form_submit($form, &$form_state) {
+  global $user;
+  dsm($form_state);
+  dsm($form);
+  $response = $form['open_ended']['text']['9']['#value'];
+  $query = db_merge('ezsteps_quiz_response')
+      ->key(array(
+        'uid' => $user->uid,
+        'module_num' => arg(1),
+      ))
+      ->fields(array(
+        'response' => $response,
+      ))
+      ->execute();
+
+  // TEMP: Flag this module as complete, until we get better requirements.
+  // Load the module
+  $module = ezsteps_glue_get_module_by_number(arg(1));
+  $flag = flag_get_flag('module_complete');
+  $flag->flag('flag', $module->nid);
+  
+  $form_state['redirect'] = 'complete/' . arg(1);
+}
+
+function ezsteps_quiz_response_get($module_num, $uid = NULL) {
+  if (is_null($uid)) {
+    global $user;
+    $uid = $user->uid;
+  }
+
+  $result = $query = db_select('ezsteps_quiz_response', 'ezqr')
+          ->fields('ezqr', array('response'))
+          ->condition('ezqr.module_num', $module_num)
+          ->condition('ezqr.uid', $uid)
+          ->execute()->fetchAll();
+
+  if (empty($result)) {
+    return FALSE;
+  }
+
+  return array_pop($result)->response;
+}

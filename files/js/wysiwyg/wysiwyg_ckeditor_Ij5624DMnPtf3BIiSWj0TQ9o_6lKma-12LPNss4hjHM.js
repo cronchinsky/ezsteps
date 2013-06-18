@@ -1,0 +1,1 @@
+window.CKEDITOR_BASEPATH = '/sites/ezsteps.edc.org/libraries/ckeditor/';

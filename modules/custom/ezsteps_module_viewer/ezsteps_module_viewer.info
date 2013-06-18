@@ -1,0 +1,6 @@
+name = EZ Steps Module Viewer
+description = Module Viewer code.
+core = 7.x
+package = ezsteps
+dependencies[] = ezsteps_glue
+dependencies[] = ezsteps_progress

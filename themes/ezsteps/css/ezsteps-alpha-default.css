@@ -1,0 +1,750 @@
+body {
+  background-color:#F9F9F9;
+}
+
+/** User Registration **/
+.page-user .tabs {
+  display:none;
+}
+
+#page {
+  background:url(../images/page-shadow.png);
+  background-repeat:repeat-y;
+  background-position:center top;
+}
+
+
+/** Top Block (title-y thing) **/
+.ezsteps-top-block {
+  text-align: left;
+  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#ezsteps-top-header {
+  font-size:18px;
+  color:#0071c5;
+}
+
+.block .block-title {
+  font-size:16px;
+  color:#0071c5;
+  margin-bottom:15px;
+}
+
+#ezsteps-top-subheader {
+  font-size:1.8em;
+}
+
+/** Page and Header Structure **/
+
+#zone-user-wrapper {
+  height:56px;
+}
+
+#zone-user {
+  height:56px;
+  background: #0071c5; /* Old browsers */
+  background: -moz-linear-gradient(left,  #0071c5 0%, #004280 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0071c5), color-stop(100%,#004280)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #0071c5 0%,#004280 100%); /* IE10+ */
+  background: linear-gradient(to right,  #0071c5 0%,#004280 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071c5', endColorstr='#004280',GradientType=1 ); /* IE6-9 */
+}
+
+#section-content .zone {
+  background-color:white;
+}
+
+#section-footer .zone {
+  background-color: #e2e3e3;
+  color:#8c8d8f
+}
+
+/** Footer **/
+.region-footer-first {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.region-footer-first p {
+  margin:0;
+}
+
+
+/** Site Name & Logo **/
+
+#zone-user-wrapper,
+#zone-user-wrapper a:link,
+#zone-user-wrapper a:visited,
+#zone-user-wrapper a:hover,
+#zone-user-wrapper a:active {
+  color:white;
+}
+
+.region-user-first .region-inner {
+  position:relative;
+}
+
+.region-user-first .block-delta-blocks-logo {
+  margin-left:0;
+  position:relative;
+  left:-10px;
+}
+
+.region-user-second {
+  text-align:right;
+}
+
+
+.region-user-second .logo-img {
+  float:none;
+}
+
+/** Module List **/
+
+/** General styles for the span and the style for the complete case **/
+.ezsteps-completion-star {
+  background-image:url(../images/Star_Completed.png);
+  display:block;
+  width:50px;
+  height:50px;
+  background-repeat:no-repeat;
+  margin-top:15px;
+}
+
+/** Style for the started but not complete case. **/
+.ezsteps-completion-star.ezsteps-completion-flagged-0 {
+  background-image:url(../images/Star_Started.png);
+}
+
+/** Style for the not started AND not completed case. **/
+.ezsteps-completion-star.ezsteps-completion-flagged-0.ezsteps-started-flagged-0 {
+  background-color:transparent;
+  background-image:none;
+}
+
+
+/* My Modules and Logout Block */
+.ezsteps-modules-and-logout-block  .content p {
+  margin-bottom:0px;
+  padding-top:15px;
+}
+
+.ezsteps-my-modules-link {
+  background-image:url(../images/house.png);
+  background-repeat: no-repeat;
+  padding-left:30px;
+  margin-right:15px;
+}
+
+.ezsteps-logout-link {
+  margin-left:15px;
+}
+
+.ezsteps-modules-and-logout-block a:link,
+.ezsteps-modules-and-logout-block a:visited,
+.ezsteps-modules-and-logout-block a:hover,
+.ezsteps-modules-and-logout-block a:active{
+  text-decoration:none;
+}
+
+
+/* Module Viewer */
+/* Navigation */
+.ezsteps-viewer-navigation {
+  margin-bottom:30px;
+  background-position:50px 12px;
+  background-repeat:no-repeat;
+}
+
+.ezsteps-nav-circle {
+  display:inline-block;
+  text-align:center;
+  vertical-align: top;
+  width: 13.7%;
+}
+
+.ezsteps-nav-circle a {
+  text-decoration:none;
+  color:black;
+}
+
+.ezsteps-nav-circle-link {
+  display:block;
+  width:25px;
+  height:25px;
+  background-image:url(../images/nav-circles.png);
+  margin:0px auto;
+}
+
+.ezsteps-nav-circle-1 .ezsteps-nav-circle-link {
+  background-position:-25px 0px;
+}
+
+.ezsteps-nav-circle-2 .ezsteps-nav-circle-link {
+  background-position:-50px 0px ;
+}
+
+.ezsteps-nav-circle-3 .ezsteps-nav-circle-link {
+  background-position:-75px 0px ;
+}
+
+.ezsteps-nav-circle-4 .ezsteps-nav-circle-link {
+  background-position:-100px 0px ;
+}
+
+.ezsteps-nav-circle-5 .ezsteps-nav-circle-link {
+  background-position:-125px 0px;
+}
+
+.ezsteps-nav-circle-last .ezsteps-nav-circle-link {
+  background-position:-150px 0px;
+}
+
+.ezsteps-nav-circle-current .ezsteps-nav-circle-link {
+  border-radius:15px;
+  box-shadow: 0px 0px 0px 3px #78bef2;
+  background-color:#78bef2;
+}
+
+.ezsteps-nav-circle-0.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-0:hover .ezsteps-nav-circle-link {
+  background-position:0px 25px;
+}
+
+.ezsteps-nav-circle-1.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-1:hover .ezsteps-nav-circle-link {
+  background-position:-25px 25px;
+}
+
+.ezsteps-nav-circle-2.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-2:hover .ezsteps-nav-circle-link {
+  background-position:-50px 25px;
+}
+
+.ezsteps-nav-circle-3.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-3:hover .ezsteps-nav-circle-link {
+  background-position:-75px 25px;
+}
+
+.ezsteps-nav-circle-4.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-4:hover .ezsteps-nav-circle-link {
+  background-position:-100px 25px;
+}
+
+.ezsteps-nav-circle-5.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-5:hover .ezsteps-nav-circle-link {
+  background-position:-125px 25px;
+}
+
+.ezsteps-nav-circle-last.ezsteps-nav-circle-current .ezsteps-nav-circle-link,
+.ezsteps-nav-circle-last:hover .ezsteps-nav-circle-link {
+  background-position:-150px 25px;
+}
+
+.ezsteps-nav-circle:hover a {
+  font-weight:bold;
+}
+
+.ezsteps-nav-text-wrapper {
+  padding:0px 8px;
+  position:relative;
+  top:-10px;
+}
+
+#ezsteps-nav-line {
+  word-spacing: -1px;
+}
+
+.ezsteps-viewer-navigation-2-steps {
+  background-image:url(../images/nav-line-2.png);
+}
+
+.ezsteps-viewer-navigation-3-steps {
+  background-image:url(../images/nav-line-3.png);
+}
+
+.ezsteps-viewer-navigation-4-steps {
+  background-image:url(../images/nav-line-4.png);
+}
+
+.ezsteps-viewer-navigation-5-steps {
+  background-image:url(../images/nav-line-5.png);
+}
+
+.ezsteps-viewer-navigation-6-steps {
+  background-image:url(../images/nav-line-6.png);
+}
+
+.ezsteps-viewer-navigation-7-steps {
+  background-image:url(../images/nav-line-7.png);
+}
+
+/** page title **/
+#ezsteps-module-viewer-controls-title {
+  color:#0071c5;
+  position: absolute;
+  top: 5px;
+  left: -225px;
+  right: 0px;
+}
+
+.not-logged-in #ezsteps-module-viewer-controls-title {  
+  left:0;
+}
+
+#ezsteps-module-viewer-top-spacer {
+  margin-bottom:60px;
+}
+
+/** Persona **/
+.block-ezsteps-module-viewer {
+  margin-top:100px;
+}
+
+.block-ezsteps-module-viewer .field-name-field-persona-picture-caption .field-item {
+  width: 140px;
+  font-size: .8em;
+  text-align: right;
+  color: grey;
+}
+
+
+.ezsteps-learn-more-hover-tip-middle {
+  position:relative;
+  top:20px;
+  left:55px;
+  background:#939598;
+  color:white;
+  width: 200px;
+  padding: 10px 20px 10px 15px;
+}
+
+.ezsteps-learn-more-hover-tip-middle:after {
+  content:"";
+  position:absolute;
+  border-style:solid;
+  display:block; 
+  width:0;
+  top:-20px; 
+  left:50px;
+  bottom:auto;
+  border-width:0px 20px 20px 0px;
+  border-color:#939598 transparent; 
+}
+
+.ezsteps-learn-more-learn-how-to {
+  font-weight:bold;
+}
+
+.field-name-field-collection-text .field-item {
+  position:relative;
+  top:20px;
+  background:#fdbb13;
+  color:black;
+  width: 150px;
+  padding: 10px 20px 10px 15px;
+}
+
+.field-name-field-collection-text .field-item:after {
+  content:"";
+  position:absolute;
+  border-style:solid;
+  display:block; 
+  width:0;
+  top:-20px; 
+  left:20px;
+  bottom:auto;
+  border-width:0px 20px 20px 0px;
+  border-color:#fdbb13 transparent; 
+}
+
+/** Try Tab Styles **/
+.ezsteps-try-tab-header {
+  color:#0071c5;
+  font-size:1.2em;
+  font-weight:bold;
+  margin-top:15px;
+  margin-bottom:20px;
+  padding-left:25px;
+}
+
+.field-name-field-activity-try-intro-text {
+  font-size:1.1em;
+  width:250px;
+}
+
+.group-activity-tabs .horizontal-tabs {
+  background-color: #f5f5f5;
+}
+
+.horizontal-tabs fieldset.horizontal-tabs-pane {
+  padding-left:0;
+  padding-right:0;
+}
+
+.group-activity-tab-try .field {
+  padding:0px 25px;
+}
+
+.field-name-field-activity-try-download {
+  float:right;
+  margin-top:50px;
+}
+
+.field-name-field-activity-try-download .ezsteps-file-link a{
+  text-decoration:none;
+  color:#555;
+  font-weight:bold;
+  display:inline-block;
+  width:150px;
+  margin-left:5px;
+  margin-right: 10px;
+}
+
+.group-activity-tab-try .field-name-field-activity-try-steps {
+  padding: 20px 0px 0px 0px;
+  clear:both;
+}
+
+.field-name-field-activity-try-steps .ezsteps-steps-inner {
+  padding:20px 25px;
+}
+
+.ezsteps-steps-inner {
+  background: rgb(0,113,197); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(0,113,197,1) 0%, rgba(0,174,239,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,113,197,1)), color-stop(100%,rgba(0,174,239,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,113,197,1) 0%,rgba(0,174,239,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,113,197,1) 0%,rgba(0,174,239,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,113,197,1) 0%,rgba(0,174,239,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,113,197,1) 0%,rgba(0,174,239,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071c5', endColorstr='#00aeef',GradientType=0 ); /* IE6-9 */
+
+  color:white;
+}
+
+.field-name-field-activity-try-steps p {
+  margin-bottom:5px;
+  font-size:1.1em;
+}
+
+.ezsteps-try-tab-steps-header {
+  font-size:1.2em;
+  margin-bottom:20px;
+}
+
+.group-activity-tabs ul.horizontal-tabs-list {
+  display:block;
+  position:absolute;
+  top:-43px;
+}
+
+.group-activity-tabs fieldset.field-group-htab {
+  width:100%;
+  margin-bottom:0px;
+}
+
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button,
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button:hover {
+  float:right;
+  border:0;
+  background-color:#b4babd;
+  margin-left:6px;
+  width:168px;
+  text-align:center;
+  text-transform: uppercase;
+  font-size:1.4em;
+}
+
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button.selected {
+  background-color:#858688;
+}
+
+
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:link,
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:hover,
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:active,
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:visited {
+  background-color:inherit;
+  color:white;
+}
+
+.group-activity-tabs ul.horizontal-tabs-list .selected strong {
+  color:white;
+}
+.group-activity-tabs ul.horizontal-tabs-list {
+  background-color:white;
+  border-width:0px;
+}
+
+.group-activity-tabs .horizontal-tabs {
+  border:none;
+}
+
+.group-activity-tabs .horizontal-tabs-panes {
+  border:11px solid #858688;
+}
+
+.field-name-field-activity-try-help-link {
+  margin:10px 0px;
+}
+
+.field-name-field-activity-try-help-link .field-label {
+  font-weight:normal;
+}
+
+.field-name-field-activity-video-transcript {
+  text-align:right;
+  margin:10px 20px 10px 0px;  
+}
+
+.field-name-field-activity-video-transcript a:link,
+.field-name-field-activity-video-transcript a:hover,
+.field-name-field-activity-video-transcript a:visited,
+.field-name-field-activity-video-transcript a:active {
+  color:#858688;
+  font-size:1.1em;
+}
+
+.field-name-field-activity-video-transcript img {
+  display:none;
+}
+
+#ezsteps-page-bottom-shadow {
+  width: 964px;
+  height: 3px;
+  margin: 0px auto;
+  background-image: url(../images/bottom-shadow.png);
+}
+
+.ezsteps-module-viewer-help-link p {
+  position:absolute;
+  top:-65px;
+}
+
+a.ezsteps-module-viewer-help-link {
+  background-image: url(../images/help-circle.png);
+  background-repeat:no-repeat;
+  padding-left:25px;
+  font-size:1.2em;
+  line-height:22px;
+  background-position: 0px 2px;
+  padding-bottom:2px;
+}
+
+
+.ezsteps-extra-items .wysiwyg-toggle-wrapper {
+  display:none;
+}
+
+.ezsteps-extra-items .filter-wrapper {
+  display:none;
+}
+
+
+/* Front Page */
+#region-sidebar-second .block {
+  padding:20px;
+  border:1px solid black;
+  margin-bottom:20px;
+  width:261px;
+}
+
+#ezsteps-sign-up-buttons a {
+  display:block;
+  width:175px;
+  padding:5px 15px;
+  border-radius:5px;
+  background-color:#e1e3e4;
+  text-decoration:none;
+  margin-top:10px;
+  background-image:url(../images/arrow.png);
+  background-position:175px 5px;
+  background-repeat:no-repeat;
+}
+
+.ezsteps-sign-up-block {
+  margin-top:60px;
+}
+
+.block-user-login .form-type-textfield input,
+.block-user-login .form-type-password input {
+  width:100%;
+}
+
+.block-user-login .form-actions {
+  text-align:right;
+  margin-bottom:0;
+}
+
+.block-user-login .form-actions  input {
+  color:white;
+  text-shadow:none;
+  border-radius:5px;
+  background-color:#0071c5;
+  background-image:none;
+  padding:5px 15px;
+}
+
+#region-sidebar-second .ezsteps-learn-more-modules-block {
+  border:none;
+}
+
+#region-sidebar-second #ezsteps-learn-more-modules {
+  text-indent:-9999px;
+  display:block;
+  width:175px;
+  height:83px;
+  background-image:url(../images/learn-more-button.png);
+  background-repeat:no-repeat;
+}
+
+#region-sidebar-second #ezsteps-learn-more-modules:hover {
+  background-position:0px -83px;
+}
+
+.view-module-list {
+  width:422px;
+  margin-left:60px;
+  margin-bottom:35px;
+}
+.view-module-list .views-field-nothing {
+  float:right;
+  margin-left:18px;
+}
+
+.view-module-list .views-field-field-module-image {
+  float:left;
+  margin-right:18px;
+}
+.view-module-list .views-row {
+  clear:both;
+  margin-bottom:1px;
+  background-color: #f0f1f1;
+  padding:18px;
+  min-height:75px;
+}
+
+.view-module-list .clearme {
+  clear:both;
+}
+
+.view-module-list .views-field-title a,
+.view-module-list .views-field-title a:hover {
+  color:#555;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.views-field-field-module-objectives {
+  color:#939598;
+  font-size:.9em;
+}
+
+.ezsteps-learn-more-hover-tip {
+  position:absolute;
+  color:black;
+  z-index:999;
+  left:100px
+}
+
+.page-module-list #region-content {
+  background-image:url(../images/logged-in-right.png);
+  background-position:550px 0px;
+  background-repeat:no-repeat;
+  min-height:550px;
+}
+
+/* Video Controls */
+#ezsteps-video-controls {
+  width: 156px;
+  height:28px;
+  margin: 0px auto;
+  text-align: center;
+  position: absolute;
+  bottom: 17px;
+  left: 50%;
+  margin-left: -78px;
+  line-height:28px;
+  padding:6px;
+  border:1px solid #7d7d7d;
+
+  background: rgb(147,146,150); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(147,146,150,1) 0%, rgba(60,60,60,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(147,146,150,1)), color-stop(100%,rgba(60,60,60,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(147,146,150,1) 0%,rgba(60,60,60,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(147,146,150,1) 0%,rgba(60,60,60,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(147,146,150,1) 0%,rgba(60,60,60,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(147,146,150,1) 0%,rgba(60,60,60,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#939296', endColorstr='#3c3c3c',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+a.ezsteps-video-control {
+  color:white;
+  display:block;
+  float:left;
+  height:28px;
+  width:51px;
+  text-decoration:none;
+  text-align:center;
+}
+
+#ezsteps-video-play-pause {
+  border-right: 1px solid grey;
+}
+
+#ezsteps-video-restart {
+  border-left: 1px solid grey;
+}
+
+.ezsteps-empty-spacer-block  {
+  width:200px;
+  height:200px;
+}
+
+
+/** Self Check **/
+.ezsteps-quiz-wrapper  {
+	min-height: 350px;
+}
+
+form#ezsteps-quiz-open-ended-form {
+	padding-bottom: 20px;
+}
+
+form#ezsteps-quiz-open-ended-form #ezsteps-radio-prompt {
+	float: left;
+	width: 285px;
+	height: 20px;
+	clear: left;
+}
+
+form#ezsteps-quiz-open-ended-form .form-item.form-type-radio {
+	display: inline;
+	width: 125px;
+	margin-left: 8px;
+}
+
+form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
+	clear: left;
+	margin: 30px 0 0 0;
+	font-weight: bold;
+}
+
+/** Persona Select **/
+
+#edit-persona .form-item-persona {
+	width: 45%;
+	float: left;
+}
+
+/* Hacks to remove */
+

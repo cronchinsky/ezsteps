@@ -1,0 +1,4 @@
+name = Easy Steps Try Tab
+core = 7.x
+description = Code to handle special try tab stuff.
+package = ezsteps

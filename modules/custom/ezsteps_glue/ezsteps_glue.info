@@ -1,0 +1,5 @@
+name = EZ Steps Glue
+description = Glue code!
+core = 7.x
+
+package = ezsteps

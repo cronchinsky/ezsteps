@@ -1,0 +1,371 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function ezsteps_module_viewer_menu() {
+
+  $items['module/%'] = array(
+    'access callback' => 'ezsteps_module_viewer_access',
+    'access arguments' => array(1),
+    'page callback' => 'ezsteps_module_progress_redirect',
+    'page arguments' => array(1),
+  );
+
+  $items['module/%/%'] = array(
+    'access callback' => 'ezsteps_module_viewer_access',
+    'access arguments' => array(1),
+    'page callback' => 'ezsteps_module_viewer',
+    'page arguments' => array(1, 2),
+  );
+
+  $items['module/%/%/%'] = array(
+    'access callback' => 'ezsteps_module_viewer_access',
+    'access arguments' => array(1),
+    'page callback' => 'ezsteps_module_viewer',
+    'page arguments' => array(1, 2, 3),
+  );
+
+  $items['persona-select'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ezsteps_module_viewer_persona_select_form'),
+    'title' => 'Select a Persona',
+  );
+
+  $items['persona-select/%'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ezsteps_module_viewer_persona_select_form', 1),
+    'title' => 'Select a Persona',
+  );
+
+  return $items;
+}
+
+/**
+ * Persona selection form.
+ */
+function ezsteps_module_viewer_persona_select_form($form, $form_state, $module_id = NULL) {
+
+  // Store the module nid, we need to send the user back to the module once
+  // they've selected a persona.
+  $form_state['module_id'] = $module_id;
+
+
+  // Query for all personas.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'persona')
+      ->propertyCondition('status', 1);
+  $result = $query->execute();
+
+  // Load the personas and loop through to create an array of options.
+  $personas = node_load_multiple(array_keys($result['node']));
+  foreach ($personas as $persona) {
+    $options[$persona->nid] = render(node_view($persona));
+  }
+
+  // Attach the javascript to style and automate the for.
+  $form['#attached']['js'][] = drupal_get_path('module', 'ezsteps_module_viewer') . '/js/persona.js';
+
+  $form['persona'] = array(
+    '#type' => 'radios',
+    '#options' => $options,
+    '#title' => 'Select a Persona',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Continue',
+  );
+
+  return $form;
+}
+
+/**
+ * Submit function for the persona selection form.
+ */
+function ezsteps_module_viewer_persona_select_form_submit(&$form, &$form_state) {
+  // Get the nid selected by the user.
+  $target_id = $form_state['values']['persona'];
+
+  // Load the user entity, add the field value, and save.
+  global $user;
+  if ($user->uid) {
+    $current_user = user_load($user->uid);
+    $current_user->field_user_persona[LANGUAGE_NONE][0]['target_id'] = $target_id;
+    user_save($current_user);
+  }
+
+  // Also set the cookie.
+  setcookie("ezsteps_persona", $target_id, NULL, "/");
+
+  // Redirect to a module if the nid is not 0. Otherwise send them to the module
+  // listing page.
+  $url = 'module';
+  $url .= (!is_null($form_state['module_id'])) ? '/' . $form_state['module_id'] : '-list';
+  $form_state['redirect'] = $url;
+}
+
+/**
+ * Implements hook_user_logout().
+ * 
+ * Removes the persona cookie when you log out.
+ */
+function ezsteps_module_viewer_user_logout($account) {
+  setcookie("ezsteps_persona", "", time() - 3600, "/");
+}
+
+/**
+ * Access function for viewing the module viewer.
+ */
+function ezsteps_module_viewer_access($module_number) {
+  $module = ezsteps_glue_get_module_by_number($module_number);
+
+  if ($module->field_module_number[LANGUAGE_NONE][0]['value'] == 0) {
+    return TRUE;
+  }
+  else {
+    return user_access('access content');
+  }
+}
+
+/**
+ * Module viewer page.
+ */
+function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
+
+  // Add the viewer js.
+  drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') . '/js/viewer.js');
+
+  // Set the persona.
+  ezsteps_module_viewer_set_persona_cookie($module_num);
+
+  // Load the module
+  $module = ezsteps_glue_get_module_by_number($module_num);
+
+  // Parse out the nids of each step.  Prepare the activity_nid variable.
+  $steps = array();
+  $activity_nid = 0;
+  if (!empty($module->field_module_activities[LANGUAGE_NONE])) {
+    foreach ($module->field_module_activities[LANGUAGE_NONE] as $delta => $step) {
+      $steps[] = $step['target_id'];
+    }
+    $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step_num]['target_id'];
+  }
+
+  // Flag this module as started.
+  $flag = flag_get_flag('module_started');
+  $flag->flag('flag', $module->nid);
+
+  // Mark progress.
+  ezsteps_progress_set($module_num, $activity_nid);
+
+  // Prepare the theme variables.
+  $variables = array(
+    'title' => $module->title,
+    'current_step' => $step_num,
+    'steps' => $steps,
+    'try' => $try,
+    'activity_nid' => $activity_nid,
+    'module' => $module,
+  );
+  return theme('ezsteps_viewer', $variables);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ezsteps_module_viewer_theme() {
+
+  $items['ezsteps_viewer'] = array(
+    'variables' => array(
+      'title' => '',
+      'current_step' => 0,
+      'steps' => NULL,
+      'try' => FALSE,
+      'nid' => FALSE,
+      'module' => new stdClass(),
+    ),
+    'template' => 'templates/ezsteps_viewer',
+  );
+
+  return $items;
+}
+
+/**
+ * Preprocess function for the ezsteps viewer.
+ */
+function ezsteps_module_viewer_preprocess_ezsteps_viewer(&$variables) {
+  // Check for XSS
+  $variables['title'] = check_plain($variables['title']);
+
+  // Figure out urls for forward and backward buttons.
+  $variables['module_number'] = $variables['module']->field_module_number[LANGUAGE_NONE][0]['value'];
+
+  // Prepare the titles for the cirlces.
+  if ($variables['steps']) {
+    $variables['titles'] = array();
+    $query = db_select('node', 'n');
+    $query->addField('n', 'title');
+    $query->join('field_data_field_module_activities', 'f', 'f.field_module_activities_target_id = n.nid');
+    $query->condition('f.entity_type', 'node');
+    $query->condition('f.entity_id', $variables['module']->nid);
+    $query->condition('nid', $variables['steps']);
+    $query->orderBy('f.delta');
+    $result = $query->execute()->fetchAll();
+    foreach ($result as $title) {
+      // for now, since we don't want to title every modules self check 'self check'
+      if (strpos($title->title,'Self Check') !== false) {
+	      $title->title = t('Self Check');
+      }
+      $variables['titles'][] = check_plain($title->title);
+    }
+  }
+
+  $classes = array();
+  foreach ($variables['steps'] as $step => $nid) {
+    $classes[$step] = "ezsteps-nav-circle ezsteps-nav-circle-" . $step;
+    if ($step == $variables['current_step']) {
+      $classes[$step] .= " ezsteps-nav-circle-current";
+    }
+    if ($step == sizeof($variables['steps']) - 1) {
+      $classes[$step] .= " ezsteps-nav-circle-last";
+    }
+  }
+
+  $variables['link_classes'] = $classes;
+
+  // Render the content of the page.
+  if (!empty($variables['activity_nid'])) {
+    $variables['content'] = render(node_view(node_load($variables['activity_nid'])));
+  }
+  else {
+    $variables['content'] = 'Page not found?';
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ * 
+ * Registers a block for showing the persona content.
+ */
+function ezsteps_module_viewer_block_info() {
+  $blocks['persona'] = array(
+    'info' => t('Persona Block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ * 
+ * Contains the function that builds the content for the persona block.
+ */
+function ezsteps_module_viewer_block_view($delta) {
+
+  switch ($delta) {
+    case 'persona':
+
+      // Get the module.
+      $module = ezsteps_glue_get_module_by_number(arg(1));
+
+      ezsteps_module_viewer_set_persona_cookie($module->field_module_number[LANGUAGE_NONE][0]['value']);
+      // Get the step number.
+      $step_num = arg(2);
+      $step = empty($step_num) ? 0 : $step_num;
+
+      // Get the activity node.
+      $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
+      $activity = node_load($activity_nid);
+
+      if (!empty($activity->field_activity_persona_content[LANGUAGE_NONE])) {
+
+        // Get an array of field collection ids.
+        $collection_ids = array();
+        foreach ($activity->field_activity_persona_content[LANGUAGE_NONE] as $delta => $value) {
+          $collection_ids[] = $value['value'];
+        }
+
+        // Query the db for the field collection within the ids listed for this
+        // activity that point to the persona from the cookie.
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'field_collection_item')
+            ->propertyCondition('item_id', $collection_ids)
+            ->fieldCondition('field_collection_persona', 'target_id', $_COOKIE['ezsteps_persona']);
+        $result = $query->execute();
+
+        // Load the field collection entity based on the query result.
+        if (!empty($result['field_collection_item'])) {
+          $ids = array_keys($result['field_collection_item']);
+          $collection = entity_load('field_collection_item', $ids);
+          $collection = array_pop($collection);
+
+          // Spit out the rendered field collection as the block.
+          return array(
+            'subject' => '',
+            'content' => $collection->view(),
+          );
+        }
+      }
+  }
+}
+
+/**
+ * Sets the user's persona cookie, and redirects them if they haven't selected
+ * one yet.
+ * 
+ * @param integer $module_num
+ *   The module number to send the user back to after they've selected a persona
+ *   (if they get redirected).
+ */
+function ezsteps_module_viewer_set_persona_cookie($module_num) {
+  // Get the persona, redirect the user if they haven't selected one yet.
+  // Use a cookie for temporary storage so we don't load the full user on each
+  // page load.
+  if (empty($_COOKIE['ezsteps_persona'])) {
+    global $user;
+    $current_user = user_load($user->uid);
+    if (!empty($current_user->field_user_persona[LANGUAGE_NONE])) {
+      setcookie('ezsteps_persona', $current_user->field_user_persona[LANGUAGE_NONE][0]['target_id'], NULL, "/");
+      $_COOKIE['ezsteps_persona'] = $current_user->field_user_persona[LANGUAGE_NONE][0]['target_id'];
+    }
+    else {
+      // Only redirect to the persona select page if this is not module 0.
+      if (!(arg(0) == 'module' && arg(1) == '0')) {
+        drupal_goto('persona-select/' . $module_num);
+      }
+    }
+  }
+}
+
+/**
+ * Redirects the user to their most recent progress on a module.
+ * 
+ * @param integer $module_num
+ *   The module number for which we want to redirect the user to their most
+ *   recently viewed page.
+ */
+function ezsteps_module_progress_redirect($module_num) {
+  $nid = ezsteps_progress_get($module_num);
+
+  // If the user hasn't started this module yet, send them to the beginning.
+  if (!$nid) {
+    drupal_goto('module/' . $module_num . '/0');
+  }
+
+  // If the user has started this module, send them to the appropriate page.
+  $module = ezsteps_glue_get_module_by_number($module_num);
+
+  foreach ($module->field_module_activities[LANGUAGE_NONE] as $step => $activity) {
+    if ($activity['target_id'] == $nid) {
+      drupal_goto('module/' . $module_num . '/' . $step);
+    }
+  }
+
+  // If we've gotten this far, then the nid that the user was last one doesn't
+  // exist.  Send them to the module start.
+  drupal_goto('module/' . $module_num . '/0');
+}

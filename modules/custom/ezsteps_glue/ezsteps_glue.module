@@ -1,0 +1,163 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function ezsteps_glue_menu() {
+
+  // Blank Home Page.
+  $items['home'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'ezsteps_glue_home_page',
+    'title' => t('Welcome to Intel Easy Steps'),
+  );
+
+  $items['403-error'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'ezsteps_glue_403_page',
+    'title' => t('Access Denied'),
+  );
+  
+  $items['terms'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'ezsteps_glue_terms_page',
+    'title' => t('Terms and Conditions'),
+  );
+
+  return $items;
+}
+
+/**
+ * Page callback for a blank home page.
+ * 
+ * We'll handle this page with blocks.
+ */
+function ezsteps_glue_home_page() {
+  global $user;
+  if ($user->uid) {
+    drupal_goto('module-list');
+  }
+  return array();
+}
+
+/**
+ * 403 Callback.
+ */
+function ezsteps_glue_403_page() {
+  global $user;
+  if ($user->uid) {
+    return "<h2>Access Denied</h2><p>We're Sorry.  You don't have permission to access that page.</p>";
+  }
+  else {
+    unset($_GET['destination']);
+    drupal_goto('home');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Adjusts the login form.
+ */
+function ezsteps_glue_form_user_login_block_alter(&$form, &$form_state, $form_id) {
+  $form['name']['#title_display'] = 'invisible';
+  $form['name']['#attributes']['placeholder'] = t('Email Address');
+  $form['pass']['#title_display'] = 'invisible';
+  $form['pass']['#attributes']['placeholder'] = t('Password');
+  $form['links']['#markup'] = l(t('Forgot User Name or Password'), 'user/password');
+  $form['#submit'][] = 'ezsteps_glue_login_destination';
+}
+
+/**
+ * Sends users who just logged in to the homepage.
+ */
+function ezsteps_glue_login_destination(&$form, &$form_state) {
+  $form_state['redirect'] = 'home';
+  unset($_GET['destination']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * 
+ * Adjusts the registration form.
+ */
+function ezsteps_glue_form_user_register_form_alter(&$form, &$form_state) {
+
+  global $user;
+
+  // If you're registering...
+  if (!$user->uid) {
+    // Add a title.
+    $form['top_text'] = array(
+      '#markup' => "<h2 id='ezsteps-registration-title'>" . t('Sign Up For Easy Steps') . '</h2>',
+      '#weight' => -9990,
+    );
+
+    // Hide the username field.
+    $form['account']['name']['#type'] = 'hidden';
+    $form['account']['name']['#required'] = FALSE;
+
+    // Remove the description for the email.
+    $form['account']['mail']['#description'] = '';
+
+    // Hide the 2nd password field.
+    $form['account']['pass']['#type'] = 'password';
+    $form['account']['pass']['#title'] = t('Password');
+    $form['account']['pass']['#description'] = '';
+    $form['account']['pass']['#size'] = '60';
+
+    $form['agree_to_terms'] = array(
+      '#weight' => 100,
+      '#type' => 'checkbox',
+      '#title' => t('I agree to the <a href="/terms">Terms and Conditions</a>.'),
+      '#required' => TRUE,
+    );
+
+    // We need to copy over the email address as a username. Use a validate
+    // function to do this.
+    array_unshift($form['#validate'], 'ezsteps_glue_fix_username');
+  }
+}
+
+/**
+ * A validate function for the registration form, though it doesn't actually
+ * validate anything.  Instead, we just dump the email field into the username
+ * field so that everything else will validate later on.
+ */
+function ezsteps_glue_fix_username(&$form, &$form_state) {
+  $form_state['input']['name'] = $form_state['input']['mail'];
+  $form_state['values']['name'] = $form_state['values']['mail'];
+}
+
+/**
+ * Uses an EntityFieldQuery to load a module given its module number.
+ */
+function ezsteps_glue_get_module_by_number($module_number) {
+  // Use drupal_static() so that the query is only run once per module per page
+  // request.
+  $module = &drupal_static(__FUNCTION__ . $module_number);
+
+  // If this is the first time, query the DB for the nid.
+  if (empty($module)) {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node');
+    $query->entityCondition('bundle', 'module');
+    $query->fieldCondition('field_module_number', 'value', $module_number);
+    $result = $query->execute();
+    if (!$result) {
+      $module = FALSE;
+    }
+    else {
+      $module = node_load(array_pop(array_keys($result['node'])));
+    }
+  }
+
+  return $module;
+}
+
+function ezsteps_glue_terms_page() {
+
+	return "<h2>These will be the Terms and Conditions</h2><p>Either a custom page or will use the Legal module</p>";
+	
+	
+}

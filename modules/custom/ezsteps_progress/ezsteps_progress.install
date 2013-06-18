@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * Implements hook_schema.
+ * 
+ * Sets up the database table for storing progress info.
+ */
+function ezsteps_progress_schema() {
+  $tables['ezsteps_progress'] = array(
+    'description' => 'Table to store user progress',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The user id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'module_num' => array(
+        'description' => 'The module number',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'nid' => array(
+        'description' => 'The node that the user was last on',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+    ),
+    'primary key' => array(
+      'uid',
+      'module_num',
+    ),
+    'indexes' => array(
+      'user module num' => array('uid', 'module_num'),
+    ),
+    'foreign keys' => array(
+      'node' => array(
+        'table' => 'node',
+        'columns' => array('nid' => 'nid'),
+      ),
+      'users' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid'),
+      ),
+    ),
+  );
+  
+  return $tables;
+}

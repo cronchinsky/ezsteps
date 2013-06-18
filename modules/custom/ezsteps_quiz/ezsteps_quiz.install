@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ * 
+ * Sets up the database table for storing progress info.
+ */
+function ezsteps_quiz_schema() {
+  $tables['ezsteps_quiz_response'] = array(
+    'description' => 'Table to store user submissions to open ended quiz questions',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The user id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'module_num' => array(
+        'description' => 'The module number',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'response' => array(
+        'description' => 'The user\'s submitted content',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE
+      ),
+    ),
+    'primary key' => array(
+      'uid',
+      'module_num',
+    ),
+    'indexes' => array(
+      'user module num' => array('uid', 'module_num'),
+    ),
+    'foreign keys' => array(
+      'users' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'uid'),
+      ),
+    ),
+  );
+  
+  return $tables;
+}

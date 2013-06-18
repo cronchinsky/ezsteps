@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * Saves user progress to the database.
+ * 
+ * @param integer $module_num
+ *   The module number (not nid) of the module.
+ * @param integer $nid
+ *   The nid of the node that we're marking progress on.
+ * @param integer $uid
+ *   The user id.  If not provided, the current user is used.
+ */
+function ezsteps_progress_set($module_num, $nid, $uid = NULL) {
+  if (empty($uid)) {
+    global $user;
+    $uid = $user->uid;
+  }
+
+  $query = db_merge('ezsteps_progress')
+      ->key(array(
+        'uid' => $uid,
+        'module_num' => $module_num,
+      ))
+      ->fields(array(
+        'nid' => $nid,
+      ))
+      ->execute();
+}
+
+/**
+ * Get the nid of the user's last activity for a given module number.
+ * 
+ * @param integer $module_num
+ *   The module number to get info for.
+ * @param integer $uid
+ *   The user's uid.  If not provided, the current user is used.
+ * @return integer
+ *   The nid of the activity that the user was last on for this module.
+ */
+function ezsteps_progress_get($module_num, $uid = NULL) {
+  if (empty($uid)) {
+    global $user;
+    $uid = $user->uid;
+  }
+  
+  $result = $query = db_select('ezsteps_progress','ezp')
+    ->fields('ezp', array('nid'))
+    ->condition('ezp.module_num', $module_num)
+    ->condition('ezp.uid', $uid)
+    ->execute()->fetchAll();
+  
+  if (empty($result)) {
+    return FALSE;
+  }
+  
+  return array_pop($result)->nid;
+}
+
+function ezsteps_progress_menu() {
+  $items['test'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'ezsteps_progress_test',
+  );
+  
+  return $items;
+}
+
+function ezsteps_progress_test() {
+  return 'hey';
+}

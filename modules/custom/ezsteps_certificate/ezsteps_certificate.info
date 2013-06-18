@@ -1,0 +1,3 @@
+name = EZ Steps Certificate
+core = 7.x
+description = Access Control and certificate printing in pdfs for completed modules.

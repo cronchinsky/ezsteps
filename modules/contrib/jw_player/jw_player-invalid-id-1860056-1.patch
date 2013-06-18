@@ -1,0 +1,16 @@
+diff --git a/jw_player.module b/jw_player.module
+index a540b9c..0135c26 100755
+--- a/jw_player.module
++++ b/jw_player.module
+@@ -303,8 +303,9 @@ function jw_player_preprocess_jw_player(&$variables) {
+ 
+   // Give each instance of the player a unique id. A random hash is used in
+   // place of drupal_html_id() due to potentially conflicting ids in cases where
+-  // the entire output of the theme function is cached.
+-  $variables['html_id'] = md5(rand());
++  // the entire output of the theme function is cached. Prefix the id as id's
++  // with a starting numeric character are invalid.
++  $variables['html_id'] = 'jwplayer' . md5(rand());
+ 
+   // Create a configuration array which will be passed to JWPlayer's JavaScript.
+   $variables['config']['file'] = $variables['file_url'];
