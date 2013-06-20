@@ -53,18 +53,19 @@ function ezsteps_try_tab_get_extra_items($node) {
         $profile = wysiwyg_get_profile('full_html');
         wysiwyg_load_editor($profile);
         drupal_add_js(drupal_get_path('module', 'ezsteps_try_tab') . '/js/wysiwyg-try.js');
-
-        $content .= render(drupal_get_form('ezsteps_try_tab_wysiwyg_form'));
+        // Load the WYSIWYG form and any existing text
+        $content .= render(drupal_get_form('ezsteps_try_tab_wysiwyg_form', $node->field_activity_try_extra_text[LANGUAGE_NONE][0]['value']));
       }
     }
     return $content;
   }
 }
 
-function ezsteps_try_tab_wysiwyg_form($form, $form_state) {
+function ezsteps_try_tab_wysiwyg_form($form, $form_state, $extra) {
   $form['try_wysiwyg'] = array(
     '#type' => 'text_format',
     '#format' => 'full_html',
+    '#default_value' => $extra,
   );
   
   return $form;

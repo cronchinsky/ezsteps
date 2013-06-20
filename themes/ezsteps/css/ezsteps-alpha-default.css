@@ -317,7 +317,7 @@ body {
 .ezsteps-learn-more-hover-tip-middle {
   position:relative;
   top:20px;
-  left:55px;
+  left:71px;
   background:#939598;
   color:white;
   width: 200px;
@@ -427,7 +427,9 @@ body {
 
   color:white;
 }
-
+.field-name-field-activity-try-steps li {
+   font-weight: bold;
+ }
 .field-name-field-activity-try-steps p {
   margin-bottom:5px;
   font-size:1.1em;
@@ -741,9 +743,32 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 
 /** Persona Select **/
 
+.page-persona-select .container-12 .grid-12 {
+   width: 960px;
+   margin-left: 0;
+ }
+ .page-persona-select .region-content{
+     background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 125px;
+  }
+#edit-persona {
+   position: relative;
+   top: 40px;
+   left: 140px;
+   padding-top: 120px;
+}
+#edit-persona header {
+ position: absolute; 
+ left: -999em;    
+}
 #edit-persona .form-item-persona {
-	width: 45%;
+	width: 260px;
 	float: left;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.form-item-persona label {
+   color: #0071C5;
+   margin-left: 20px;
 }
 
 /* Hacks to remove */
