@@ -18,11 +18,13 @@ function ezsteps_glue_menu() {
     'title' => t('Access Denied'),
   );
   
+/*
   $items['terms'] = array(
     'access callback' => TRUE,
     'page callback' => 'ezsteps_glue_terms_page',
     'title' => t('Terms and Conditions'),
   );
+*/
 
   return $items;
 }
@@ -109,7 +111,7 @@ function ezsteps_glue_form_user_register_form_alter(&$form, &$form_state) {
     $form['agree_to_terms'] = array(
       '#weight' => 100,
       '#type' => 'checkbox',
-      '#title' => t('I agree to the <a href="/terms">Terms and Conditions</a>.'),
+      '#title' => t('I have read and understand the <a href="/privacy-statement">Privacy Statement</a>, and agree and accept the <a href="/terms-of-use">Terms of Use</a>.'),
       '#required' => TRUE,
     );
 
@@ -155,9 +157,11 @@ function ezsteps_glue_get_module_by_number($module_number) {
   return $module;
 }
 
+/*
 function ezsteps_glue_terms_page() {
 
 	return "<h2>These will be the Terms and Conditions</h2><p>Either a custom page or will use the Legal module</p>";
 	
 	
 }
+*/

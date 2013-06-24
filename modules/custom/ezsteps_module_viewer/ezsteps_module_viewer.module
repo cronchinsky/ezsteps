@@ -203,6 +203,7 @@ function ezsteps_module_viewer_preprocess_ezsteps_viewer(&$variables) {
 
   // Figure out urls for forward and backward buttons.
   $variables['module_number'] = $variables['module']->field_module_number[LANGUAGE_NONE][0]['value'];
+  $variables['title_img'] = drupal_html_class($variables['title'] . '-' . $variables['module_number']); 
 
   // Prepare the titles for the cirlces.
   if ($variables['steps']) {

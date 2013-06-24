@@ -23,7 +23,6 @@ function ezsteps_preprocess_node(&$vars) {
   }
 }
 
-
 /** Overrides the file download link **/
 function ezsteps_file_link($variables) {
   $file = $variables['file'];

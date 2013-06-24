@@ -18,23 +18,27 @@ body {
 .ezsteps-top-block {
   text-align: left;
   padding: 30px;
-  padding-top: 30px;
+  padding-top: 17px;
   padding-bottom: 30px;
 }
 
 #ezsteps-top-header {
-  font-size:18px;
+  font-size: 16px;
   color:#0071c5;
+  font-family: neo-sans-intel;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .block .block-title {
   font-size:16px;
   color:#0071c5;
-  margin-bottom:15px;
+  margin-bottom:12px;
 }
 
 #ezsteps-top-subheader {
-  font-size:1.8em;
+  font-size:13px;
+  letter-spacing: .75px;
 }
 
 /** Page and Header Structure **/
@@ -66,12 +70,13 @@ body {
 
 /** Footer **/
 .region-footer-first {
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:3px;
+  padding-bottom:3px;
 }
 
 .region-footer-first p {
-  margin:0;
+  margin:0 0 0 5px;
+  font-size: 9px;
 }
 
 
@@ -551,7 +556,7 @@ a.ezsteps-module-viewer-help-link {
 
 /* Front Page */
 #region-sidebar-second .block {
-  padding:20px;
+  padding:15px;
   border:1px solid black;
   margin-bottom:20px;
   width:261px;
@@ -593,8 +598,15 @@ a.ezsteps-module-viewer-help-link {
   padding:5px 15px;
 }
 
+#region-content .ezsteps-front-page-video  {
+	margin-left: 52px;
+	margin-top: 20px;
+}
+
 #region-sidebar-second .ezsteps-learn-more-modules-block {
   border:none;
+  padding: 0;
+  margin-left: -6px;
 }
 
 #region-sidebar-second #ezsteps-learn-more-modules {
@@ -741,7 +753,7 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 	font-weight: bold;
 }
 
-/** Persona Select **/
+/** Persona Select Rules **/
 
 .page-persona-select .container-12 .grid-12 {
    width: 960px;
@@ -751,10 +763,11 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
      background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 125px;
   }
 #edit-persona {
-   position: relative;
+  /* position: relative;
    top: 40px;
-   left: 140px;
-   padding-top: 120px;
+   left: 140px;*/
+   margin-top: 170px;
+   margin-left: 150px;
 }
 #edit-persona header {
  position: absolute; 
@@ -769,6 +782,12 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 .form-item-persona label {
    color: #0071C5;
    margin-left: 20px;
+}
+
+/* basic pages: terms of use, help */
+
+.node {
+	padding: 20px;
 }
 
 /* Hacks to remove */
