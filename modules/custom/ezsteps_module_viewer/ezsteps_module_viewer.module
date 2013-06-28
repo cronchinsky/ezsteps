@@ -27,16 +27,16 @@ function ezsteps_module_viewer_menu() {
   );
 
   $items['persona-select'] = array(
-    'access callback' => 'ezsteps_module_viewer_access',
-    'access arguments' => array(1),
+    'access callback' => 'user_access',
+    'access arguments' => array(user_is_logged_in()),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ezsteps_module_viewer_persona_select_form'),
     'title' => 'Select a Persona',
   );
 
   $items['persona-select/%'] = array(
-    'access callback' => 'ezsteps_module_viewer_access',
-    'access arguments' => array(1),
+    'access callback' => 'user_access',
+    'access arguments' => array(user_is_logged_in()),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ezsteps_module_viewer_persona_select_form', 1),
     'title' => 'Select a Persona',
