@@ -2,9 +2,17 @@ body {
   background-color:#F9F9F9;
 }
 
+a:link, a:visited {
+}
+
 /** User Registration **/
 .page-user .tabs {
   display:none;
+}
+
+#ezsteps-registration-title {
+	text-indent: -9999px;
+	background: url('../images/neo_sans/H1_Signup_EZ.png') no-repeat -5px top;
 }
 
 #page {
@@ -28,6 +36,22 @@ body {
   font-family: neo-sans-intel;
   font-weight: bold;
   margin-bottom: 10px;
+  text-indent: -9999px;
+  background: url('../images/neo_sans/H1_Home.png') no-repeat -10px top;
+}
+
+#ezsteps-module-list-header {
+  font-size: 16px;
+  color:#0071c5;
+  font-family: neo-sans-intel;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-indent: -9999px;
+  background: url('../images/neo_sans/H1_Modules_Preview.png') no-repeat -10px top;
+}
+
+.logged-in #ezsteps-module-list-header {
+ background: url('../images/neo_sans/H1_Modules_List.png') no-repeat -10px top;
 }
 
 .block .block-title {
@@ -298,6 +322,28 @@ body {
   right: 0px;
 }
 
+/* images for titles that have to be in neo sans :( */
+#ezsteps-module-viewer-controls-title.title-module-0 {
+  background: url('../images/neo_sans/H1_Signup_Email.png') no-repeat left top;
+  text-indent: -9999px;
+}
+
+#ezsteps-module-viewer-controls-title.title-module-1 {
+  background: url('../images/neo_sans/H1_M1.png') no-repeat left top;
+  text-indent: -9999px;
+}
+
+#ezsteps-module-viewer-controls-title.title-module-2 {
+  background: url('../images/neo_sans/H1_M2.png') no-repeat left top;
+  text-indent: -9999px;
+}
+
+#ezsteps-module-viewer-controls-title.title-module-3 {
+  background: url('../images/neo_sans/H1_M3.png') no-repeat left top;
+  text-indent: -9999px;
+}
+
+
 .not-logged-in #ezsteps-module-viewer-controls-title {  
   left:0;
 }
@@ -374,13 +420,18 @@ body {
   font-size:1.2em;
   font-weight:bold;
   margin-top:15px;
-  margin-bottom:20px;
+  margin-bottom:15px;
   padding-left:25px;
 }
 
+.field-name-field-activity-try-steps a:link,
+.field-name-field-activity-try-steps a:visited {
+  color: #fdbb13;
+}
+
 .field-name-field-activity-try-intro-text {
-  font-size:1.1em;
-  width:250px;
+  font-size:1em;
+  width: 290px;
 }
 
 .group-activity-tabs .horizontal-tabs {
@@ -398,7 +449,7 @@ body {
 
 .field-name-field-activity-try-download {
   float:right;
-  margin-top:50px;
+  margin-top:35px;
 }
 
 .field-name-field-activity-try-download .ezsteps-file-link a{
@@ -434,15 +485,16 @@ body {
 }
 .field-name-field-activity-try-steps li {
    font-weight: bold;
+   margin-left: 7px;
  }
 .field-name-field-activity-try-steps p {
-  margin-bottom:5px;
+  margin-bottom:4px;
   font-size:1.1em;
 }
 
 .ezsteps-try-tab-steps-header {
   font-size:1.2em;
-  margin-bottom:20px;
+  margin-bottom:10px;
 }
 
 .group-activity-tabs ul.horizontal-tabs-list {
@@ -573,10 +625,21 @@ a.ezsteps-module-viewer-help-link {
   background-image:url(../images/arrow.png);
   background-position:175px 5px;
   background-repeat:no-repeat;
+  color: #0071C5;
 }
 
 .ezsteps-sign-up-block {
   margin-top:60px;
+}
+
+.ezsteps-sign-up-block h2.block-title {
+  background: url('../images/neo_sans/Login_New.png') no-repeat -2px top;
+  text-indent: -9999px;
+}
+
+#block-user-login h2.block-title {
+  background: url('../images/neo_sans/Login_Returning.png') no-repeat -2px top;
+  text-indent: -9999px;
 }
 
 .block-user-login .form-type-textfield input,
@@ -656,6 +719,12 @@ a.ezsteps-module-viewer-help-link {
   font-size:13px;
 }
 
+.view-module-list .views-field-title {
+  color:#555;
+  font-size:13px;
+  font-weight: bold;
+}
+
 .views-field-field-module-objectives {
   color:#939598;
   font-size:.9em;
@@ -673,6 +742,10 @@ a.ezsteps-module-viewer-help-link {
   background-position:550px 0px;
   background-repeat:no-repeat;
   min-height:550px;
+}
+/*move up sign-in blocks on Modules Preview page*/
+.page-modules-preview .ezsteps-sign-up-block {
+  margin-top: 0;
 }
 
 /* Video Controls */
@@ -730,8 +803,41 @@ a.ezsteps-video-control {
 	min-height: 350px;
 }
 
+
 form#ezsteps-quiz-open-ended-form {
 	padding-bottom: 20px;
+}
+
+.ezsteps-quiz-no {
+	font-weight: bold;
+	font-size: 1.3em;
+	margin-bottom: 20px;
+}
+
+.ezsteps-quiz-prompt {
+	font-size: 1.3em
+}
+
+.ezsteps-quiz-answer-link {
+	padding-left: 20px;
+	font-size: 1.2em;
+}
+
+.ezsteps-quiz-feedback {
+	margin-top: 20px;
+	font-size: 1.2em;
+}
+
+.ezsteps-quiz-next-wrapper {
+	text-align: right;
+}
+
+.ezsteps-quiz-next-wrapper a:link {
+	text-decoration: none;
+}
+
+.ezsteps-quiz-next-wrapper a:hover {
+	text-decoration: underline;
 }
 
 form#ezsteps-quiz-open-ended-form #ezsteps-radio-prompt {
@@ -753,6 +859,21 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 	font-weight: bold;
 }
 
+/* complete page */
+
+a.ezsteps-complete-page-certificate-link  {
+	background: url('../images/EZ-Steps-Journal-Icon.png') no-repeat left center;
+	padding-left: 85px;
+	padding-top: 18px;
+	width: 160px;
+	height: 75px;
+	display: block;
+	text-decoration: none;
+	color: #555;
+	font-weight: bold;
+	
+}
+
 /** Persona Select Rules **/
 
 .page-persona-select .container-12 .grid-12 {
@@ -760,29 +881,46 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
    margin-left: 0;
  }
  .page-persona-select .region-content{
-     background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 125px;
+     background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 60px;
   }
+.page-persona-select .node {
+   padding: 0;
+   }
 #edit-persona {
-  /* position: relative;
-   top: 40px;
-   left: 140px;*/
-   margin-top: 170px;
-   margin-left: 150px;
+   margin-top: 100px;
+   margin-left: 100px;
 }
 #edit-persona header {
  position: absolute; 
  left: -999em;    
 }
 #edit-persona .form-item-persona {
-	width: 260px;
+	width: 180px;
 	float: left;
-	margin-top: 0;
-	margin-bottom: 0;
+	margin: 20px 30px;
+	padding: 0;
+	height: 160px
 }
-.form-item-persona label {
+.form-item-persona {
    color: #0071C5;
    margin-left: 20px;
 }
+
+#edit-persona .form-item-persona img {
+    border: solid 5px transparent;
+}
+#edit-persona .form-item-persona img:hover {
+   border: 5px solid #FDBB13;
+   cursor:pointer;
+ }
+ 
+#ezsteps-persona-instr {
+  left:240px;
+  position:absolute;
+  top:85px;
+  width:260px;
+  color: #fff;
+   }
 
 /* basic pages: terms of use, help */
 

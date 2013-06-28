@@ -58,8 +58,6 @@ function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
 
 function ezsteps_quiz_open_ended_form_submit($form, &$form_state) {
   global $user;
-  dsm($form_state);
-  dsm($form);
   $response = $form['open_ended']['text']['9']['#value'];
   $query = db_merge('ezsteps_quiz_response')
       ->key(array(

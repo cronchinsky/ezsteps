@@ -113,7 +113,7 @@
   Quiz.prototype.correct = function () {
     
     // Add a next button to the quiz that calls Quiz.next() when clicked.
-    var $nextButton = $('<a href="#">Next</a>');
+    var $nextButton = $('<a href="#">Next >></a>');
     var quiz = this;
     $div = $('<div class="ezsteps-quiz-next-wrapper"></div>');
     $div.append($nextButton);
@@ -140,9 +140,12 @@
       
       // Get the question object from the quiz object's array of questions.
       var question = quiz.questions[quiz.currentQuestion];
+      var number = quiz.currentQuestion + 1;
+      
+      $wrapper.append('<div class="ezsteps-quiz-no">Question ' + number + '</div>');  
       
       // Add div for the prompt.
-      $wrapper.append('<div class="ezsteps-quiz-prompt">' + question.prompt + '</div>');      
+      $wrapper.append('<div class="ezsteps-quiz-prompt">' + question.prompt + '</div>');          
       var $answers = ('<div class="ezsteps-quiz-answers"></div>');
 
       
