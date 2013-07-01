@@ -27,16 +27,14 @@ function ezsteps_module_viewer_menu() {
   );
 
   $items['persona-select'] = array(
-    'access callback' => 'user_access',
-    'access arguments' => array(user_is_logged_in()),
+    'access callback' => 'ezsteps_user_access',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ezsteps_module_viewer_persona_select_form'),
     'title' => 'Select a Persona',
   );
 
   $items['persona-select/%'] = array(
-    'access callback' => 'user_access',
-    'access arguments' => array(user_is_logged_in()),
+    'access callback' => 'ezsteps_user_access',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('ezsteps_module_viewer_persona_select_form', 1),
     'title' => 'Select a Persona',
@@ -130,9 +128,18 @@ function ezsteps_module_viewer_access($module_number) {
     return TRUE;
   }
   else {
-    // TRUE is user is logged in, otherwise they can't access the viewer or select a persona
+    // TRUE is user is logged in, otherwise they can't access the viewer
   	return user_is_logged_in();
   }
+}
+
+/**
+ * Access function for the persona select.
+ */
+function ezsteps_user_access() {
+
+  	return user_is_logged_in();
+ 
 }
 
 /**
