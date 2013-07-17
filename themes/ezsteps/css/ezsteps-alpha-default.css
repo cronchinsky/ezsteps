@@ -323,22 +323,27 @@ a:link, a:visited {
 }
 
 /* images for titles that have to be in neo sans :( */
-#ezsteps-module-viewer-controls-title.title-module-0 {
+
+#ezsteps-module-viewer.module-0 #ezsteps-module-viewer-controls-title  {
   background: url('../images/neo_sans/H1_Signup_Email.png') no-repeat left top;
   text-indent: -9999px;
+  display: none;
+}
+#ezsteps-module-viewer.module-0 .ezsteps-viewer-navigation {
+	display: none;
 }
 
-#ezsteps-module-viewer-controls-title.title-module-1 {
+#ezsteps-module-viewer.module-1 #ezsteps-module-viewer-controls-title  {
   background: url('../images/neo_sans/H1_M1.png') no-repeat left top;
   text-indent: -9999px;
 }
 
-#ezsteps-module-viewer-controls-title.title-module-2 {
+#ezsteps-module-viewer.module-2 #ezsteps-module-viewer-controls-title  {
   background: url('../images/neo_sans/H1_M2.png') no-repeat left top;
   text-indent: -9999px;
 }
 
-#ezsteps-module-viewer-controls-title.title-module-3 {
+#ezsteps-module-viewer.module-3 #ezsteps-module-viewer-controls-title  {
   background: url('../images/neo_sans/H1_M3.png') no-repeat left top;
   text-indent: -9999px;
 }
@@ -930,3 +935,12 @@ a.ezsteps-complete-page-certificate-link  {
 
 /* Hacks to remove */
 
+#ezsteps-module-viewer.module-0 .field-name-field-activity-try-help-link {
+	background: url('../images/EasyStepsForm600.png') no-repeat center center;
+	height: 340px;
+}
+
+#ezsteps-module-viewer.module-0 .ezsteps-help-guide-link-label,
+#ezsteps-module-viewer.module-0 .field-name-field-activity-try-help-link .field-items {
+	display: none;
+}

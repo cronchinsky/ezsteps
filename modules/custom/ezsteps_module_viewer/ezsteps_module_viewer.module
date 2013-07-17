@@ -29,7 +29,7 @@ function ezsteps_module_viewer_menu() {
   $items['persona-select'] = array(
     'access callback' => 'ezsteps_user_access',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('ezsteps_module_viewer_persona_select_form'),
+    'page arguments' => array('ezsteps_module_viewer_persona_select_form', 1),
     'title' => 'Select a Persona',
   );
 
@@ -105,7 +105,7 @@ function ezsteps_module_viewer_persona_select_form_submit(&$form, &$form_state) 
   // Redirect to a module if the nid is not 0. Otherwise send them to the module
   // listing page.
   $url = 'module';
-  $url .= (!is_null($form_state['module_id'])) ? '/' . $form_state['module_id'] : '-list';
+  $url .= (!empty($form_state['module_id'])) ? '/' . $form_state['module_id'] : '-list';
   $form_state['redirect'] = $url;
 }
 
@@ -181,7 +181,7 @@ function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
     'try' => $try,
     'activity_nid' => $activity_nid,
     'module' => $module,
-    'title_image_class' => $title_image_class,
+    'module_class' => 'module-'. $module_num,
   );
   return theme('ezsteps_viewer', $variables);
 }
@@ -229,7 +229,7 @@ function ezsteps_module_viewer_preprocess_ezsteps_viewer(&$variables) {
     $query->orderBy('f.delta');
     $result = $query->execute()->fetchAll();
     foreach ($result as $title) {
-      // for now, since we don't want to title every modules self check 'self check'
+      // @TODO for now, since we don't want to title every modules self check 'self check' or 'start here'
       if (strpos($title->title,'Self Check') !== false) {
 	      $title->title = t('Self Check');
       } else if (strpos($title->title,'Start Here') !== false) {

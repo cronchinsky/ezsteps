@@ -25,6 +25,7 @@ function ezsteps_try_tab_field_extra_fields() {
  * Adds the extra items to the node.
  */
 function ezsteps_try_tab_node_view_alter(&$build) {
+  //dsm($build);
   $info = field_extra_fields_get_display('node', 'activity', $build ['#view_mode']);
   if ($info['extra items']['visible']) {
     $build['extra items'] = array(
@@ -80,8 +81,10 @@ function ezsteps_try_tab_wysiwyg_form($form, $form_state, $extra) {
 function ezsteps_try_tab_node_view($node) {
   if ($node->type == 'activity') {
     $header = "<div class='ezsteps-try-tab-header'>";
-    $header .= t('Activity') . " ";
-    $header .= arg(2) . ": ";
+    if (arg(2) <> '0') {
+    	$header .= t('Activity') . " ";
+    	$header .= arg(2) . ": ";
+    }
     $header .= check_plain($node->title);
     $header .="</div>";
     $node->content['field_activity_try_intro_text']['#prefix'] = $header;

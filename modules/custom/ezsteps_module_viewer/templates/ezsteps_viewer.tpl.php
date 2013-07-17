@@ -1,6 +1,6 @@
-<div id="ezsteps-module-viewer">
+<div id="ezsteps-module-viewer" class="<?php print $module_class ?>">
   <div id="ezsteps-module-viewer-top-spacer"></div>
-  <h2 id="ezsteps-module-viewer-controls-title" class="<?php print $title_image_class ?>">Module <?php print $module_number; ?>: <?php print $title; ?></h2>
+  <h2 id="ezsteps-module-viewer-controls-title">Module <?php print $module_number; ?>: <?php print $title; ?></h2>
   <div class="ezsteps-viewer-navigation ezsteps-viewer-navigation-<?php print sizeof($link_classes); ?>-steps">
     <span id="ezsteps-nav-line">
       <?php foreach ($titles as $step => $title): ?>
