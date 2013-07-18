@@ -185,7 +185,7 @@ a:link, a:visited {
 /* Module Viewer */
 /* Navigation */
 .ezsteps-viewer-navigation {
-  margin-bottom:30px;
+  margin-bottom: 20px;
   background-position:50px 12px;
   background-repeat:no-repeat;
 }
@@ -200,6 +200,7 @@ a:link, a:visited {
 .ezsteps-nav-circle a {
   text-decoration:none;
   color:black;
+  font-size: .85em;
 }
 
 .ezsteps-nav-circle-link {
@@ -283,6 +284,11 @@ a:link, a:visited {
   padding:0px 8px;
   position:relative;
   top:-10px;
+  line-height: 13px;
+}
+
+.ezsteps-nav-text-wrapper:hover {
+	padding: 0;
 }
 
 #ezsteps-nav-line {
@@ -323,10 +329,15 @@ a:link, a:visited {
 }
 
 /* images for titles that have to be in neo sans :( */
+#ezsteps-module-viewer #ezsteps-module-viewer-controls-title {
+  background-repeat:  no-repeat;
+  background-position: left 12px;
+  text-indent: -9999px;
+}
+
 
 #ezsteps-module-viewer.module-0 #ezsteps-module-viewer-controls-title  {
-  background: url('../images/neo_sans/H1_Signup_Email.png') no-repeat left top;
-  text-indent: -9999px;
+  background-image: url('../images/neo_sans/H1_Signup_Email.png');
   display: none;
 }
 #ezsteps-module-viewer.module-0 .ezsteps-viewer-navigation {
@@ -334,18 +345,15 @@ a:link, a:visited {
 }
 
 #ezsteps-module-viewer.module-1 #ezsteps-module-viewer-controls-title  {
-  background: url('../images/neo_sans/H1_M1.png') no-repeat left top;
-  text-indent: -9999px;
+  background-image: url('../images/neo_sans/H1_M1.png');
 }
 
 #ezsteps-module-viewer.module-2 #ezsteps-module-viewer-controls-title  {
-  background: url('../images/neo_sans/H1_M2.png') no-repeat left top;
-  text-indent: -9999px;
+  background-image: url('../images/neo_sans/H1_M2.png');
 }
 
 #ezsteps-module-viewer.module-3 #ezsteps-module-viewer-controls-title  {
-  background: url('../images/neo_sans/H1_M3.png') no-repeat left top;
-  text-indent: -9999px;
+  background-image: url('../images/neo_sans/H1_M3.png');
 }
 
 
@@ -362,14 +370,26 @@ a:link, a:visited {
   margin-top:100px;
 }
 
+/*
 .block-ezsteps-module-viewer .field-name-field-persona-picture-caption .field-item {
   width: 140px;
   font-size: .8em;
   text-align: right;
   color: grey;
 }
+*/
 
+.block-ezsteps-module-viewer .field-name-field-collection-text {
+	margin-left: 5px;
+}
 
+.block-ezsteps-module-viewer .field-name-field-persona-picture {
+	margin-left: -30px;
+}
+
+.block-ezsteps-module-viewer .node-persona {
+	padding-bottom: 0;
+}
 .ezsteps-learn-more-hover-tip-middle {
   position:relative;
   top:20px;
@@ -451,7 +471,7 @@ a:link, a:visited {
   padding: 0px 25px;
 }
 
-.group-activity-try-intro {
+.xx-group-activity-try-intro {
  background: #7db9e8; /* Old browsers */
  background: -moz-linear-gradient(left, #7db9e8 0%, #1e5799 61%); /* FF3.6+ */
  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#7db9e8), color-stop(61%,#1e5799)); /* Chrome,Safari4+ */
@@ -466,6 +486,15 @@ a:link, a:visited {
  margin-bottom: 0;
 }
 
+.group-activity-try-intro {
+ background: #7db9e8; /* Old browsers */
+ background: url('../images/Intel-gradient_660px.png') repeat-y left top;
+ color: white;
+ font-weight: bold;
+ padding-bottom: 15px;
+ margin-bottom: 0;
+}
+
 .group-activity-try-intro legend {
 	padding-top: 40px;
 }
@@ -474,16 +503,26 @@ a:link, a:visited {
   margin-top:35px;
 }
 
-.field-name-field-activity-try-download .ezsteps-file-link a{
+.field-name-field-activity-try-download img {
+	height: 75px;
+	width: 56px;
+}
+
+.field-name-field-activity-try-download .file {
+	height: 75px;
+}
+
+.field-name-field-activity-try-download .ezsteps-file-link a {
   text-decoration:none;
   color:#555;
-  font-weight:bold;
   display:inline-block;
-  width:150px;
+  width:125px;
   margin-left:5px;
   margin-right: 10px;
   color: white;
+  font-size: .85em;
 }
+
 
 .field-name-field-activity-try-steps .ezsteps-steps-inner {
     padding: 20px 25px;
@@ -495,7 +534,6 @@ a:link, a:visited {
   clear:both;
 }
 
-.
 
 .field-name-field-activity-try-steps .ezsteps-steps-inner {
   padding:20px 25px;
@@ -534,17 +572,37 @@ a:link, a:visited {
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button:hover {
   float:right;
   border:0;
-  background-color:#b4babd;
-  margin-left:6px;
-  width:168px;
+  width:185px;
   text-align:center;
   text-transform: uppercase;
   font-size:1.4em;
 }
 
-.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button.selected {
-  background-color:#858688;
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-0 {
+ 	background: url('../images/neo_sans/Try-Tab_Inactive.png') no-repeat left 6px;
+ 	text-indent: -9999px;
 }
+
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-1 {
+ 	background: url('../images/neo_sans/Learn-Tab_Inactive.png') no-repeat left 6px;
+ 	text-indent: -9999px;
+}
+
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-0.selected, 
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-0:hover {
+ 	background: url('../images/neo_sans/Try-Tab_Active.png') no-repeat left 6px;
+ 	text-indent: -9999px;
+}
+
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-1.selected,
+.horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-1:hover {
+ 	background: url('../images/neo_sans/Learn-Tab_Active.png') no-repeat left 6px;
+ 	text-indent: -9999px;
+}
+
+
+
+
 
 
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:link,

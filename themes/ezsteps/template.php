@@ -30,7 +30,7 @@ function ezsteps_file_link($variables) {
 
   $url = file_create_url($file->uri);
   $icon = theme_image(array(
-    'path' => drupal_get_path('theme', 'ezsteps') . '/images/file-download.png',
+    'path' => drupal_get_path('theme', 'ezsteps') . '/images/Flyer-icon.png',
     'attributes' => array(),
   ));
 
@@ -51,5 +51,5 @@ function ezsteps_file_link($variables) {
     $options['attributes']['title'] = check_plain($file->filename);
   }
   $image_options = $options + array('html' => TRUE);
-  return '<span class="file"><span class="ezsteps-icon-link">' . l($icon, $url, $image_options) . '</span> <span class="ezsteps-file-link">' . l($link_text, $url, $options) . '</span></span>';
+  return '<div class="file"><span class="ezsteps-icon-link">' . l($icon, $url, $image_options) . '</span> <span class="ezsteps-file-link">' . l($link_text, $url, $options) . '</span></div>';
 }
