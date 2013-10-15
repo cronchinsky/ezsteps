@@ -1,0 +1,269 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	font-family: Tahoma, Geneva, sans-serif;
+}
+#wrapper {
+	background-color: #f5f5f5;
+	margin: 0px auto;
+	width: 920px;
+	display: block;
+	border: 3px solid #858688;
+	height: 650px;
+}
+h2 {
+	color: #0072c5;
+	margin-left: 20px;
+	font-size: 1.2em;
+}
+a {
+	color: #0071c5;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.draggable {
+	margin-bottom: 15px;
+	width: 880px;
+	display: block;
+	height: 50px;
+	position: relative;
+}
+#field {
+	position: relative;
+}
+.draggable li {
+	display: block;
+	height: 20px;
+	background-color: #fdbb13;
+	color: black;
+	padding: 5px 8px 3px 8px;
+	margin: 10px 0px 10px 0px;
+	list-style-type: none;
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.9em;
+	overflow: hidden;
+	cursor: pointer;
+	z-index: 1000;
+	position: absolute;
+}
+.draggable li:last-child {
+	margin-right: 0px;
+}
+.clear-both {
+	clear: both;
+}
+/*#browser_container {
+	position: absolute;
+	top: 200px;
+	left: 260px;
+}*/
+#browser_image {
+	width: 830px; /*516px;*/
+	height: 415px; /*239px;*/
+	background: url('../images/firefox_830.png') 0 0 no-repeat;
+	display: block;
+	margin: 0px auto;
+}
+#directions, #help {
+	margin: 20px;
+}
+#feedback {
+	float: left;
+	height: 60px;
+	width: 900px;
+	margin-bottom: 30px;
+	margin: 10px 10px 10px 20px;
+}
+/* 
+ *  Feedback
+ */
+#feedback_text {
+	margin-left: 40px;
+	padding-top: 8px;
+	height: 40px;
+	
+}
+#feedback_word {
+	font-weight: bold;
+	margin-right: 10px;
+}
+.incorrect_text {
+	color: #db4a0a;
+}
+.correct_text {
+	color: #69a300; /*#a6ce39;*/
+}
+/*
+ *  Feedback Icons
+ */
+#feedback_icon {
+	display: block;
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-top: 2px;
+}
+.incorrect_icon {
+	background: url('../images/M2_A1_slices/Try-again.png') 0 0 no-repeat;
+}
+.correct_icon {
+	background: url('../images/M2_a1_slices/Correct_dark.png') 0 0 no-repeat;
+}
+#icon {
+	float: left;
+}
+/**********************
+ *  **TARGETS **
+ *********************/
+ 
+/*
+ *  address bar
+ */ 
+#address_bar_target {
+	width: 500px;
+	height: 15px;
+	position: relative;
+	top: 20px;
+	left: 78px;
+}
+.hover
+{
+	border: 3px dashed black;
+	background-color: white;
+	background-color: rgba(255,255,255,0.5);
+	/*opacity:0.5;*/
+	
+	/*ie browsers*/
+	filter: alpha(opacity=50);
+}
+/*
+ *  toolbar
+ */
+#ezsteps_toolbar_target {
+	width: 815px;
+	height: 25px;
+	position: relative;
+	top: 40px;
+	left: 6px;
+
+
+	}
+/*
+ *  scrollbar
+ */
+ 
+#scrollbar_target {
+	width: 29px;
+	height: 335px;
+	position: relative;
+	top: -320px;
+	left: 800px;
+}
+/*
+ *  display 
+ */
+ 
+#display_target {
+	width: 800px;
+	height: 331px;
+	position: relative;
+	top: 13px;
+	left: 5px;
+}
+/* 
+  * titlebar
+  */ 
+  
+#titlebar_target {
+	width: 198px;
+	height: 18px;
+	position: relative;
+	top: -20px;
+	left: 6px;
+}
+
+/*
+ *   Computer Parts Targets
+ */
+ 
+ #device_pics {
+	 width: 740px;
+	 height: 400px;
+	 margin: 0px auto;
+ }
+ 
+.device_container {
+	 border: 1px solid black;;
+	 height: 133px;
+	 width: 200px;
+	 float: left;
+	 margin: 20px;
+ }
+ 
+.ui-droppable
+ {
+	width: 200px;
+	height: 133px;
+	
+}
+.device_hover
+{
+	background-color: #09F;
+	
+	/*opacity:0.5;*/
+	
+	/*ie browsers*/
+	filter: alpha(opacity=50);
+}
+
+.cpu{
+	background:url(../images/computer_parts/computer-parts.png) -200px 0px no-repeat;
+}
+
+.mouse {
+	background:url(../images/computer_parts/computer-parts.png) 0px 0px no-repeat;
+}
+
+.keyb {
+
+	background:url(../images/computer_parts/computer-parts.png) -600px 0px no-repeat;
+}
+
+.dvd {
+	background:url(../images/computer_parts/computer-parts.png) -400px 0px no-repeat;	
+	
+}
+
+.monitor {
+	background:url(../images/computer_parts/computer-parts.png) -800px 0px no-repeat;
+	
+}
+
+.cpu_hover {
+	background:url(../images/computer_parts/computer-parts.png) -200px -133px no-repeat;
+	
+}
+
+.mouse_hover {
+	background:url(../images/computer_parts/computer-parts.png) 0px -133px no-repeat;
+	
+}
+
+.dvd_hover {
+	background:url(../images/computer_parts/computer-parts.png) -400px -133px no-repeat;
+	
+}
+
+.keyb_hover {
+	background:url(../images/computer_parts/computer-parts.png) -600px -133px no-repeat;
+	
+}
+
+.monitor_hover {
+	background:url(../images/computer_parts/computer-parts.png) -800px -133px no-repeat;
+	
+}

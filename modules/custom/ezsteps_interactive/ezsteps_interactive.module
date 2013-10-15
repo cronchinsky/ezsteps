@@ -1,0 +1,48 @@
+<?php
+
+function ezsteps_interactive_node_view($node) {
+  if ($node->type == 'interactive') {
+    if (!empty($node->field_interactive_type[LANGUAGE_NONE])) {
+      
+      /*
+drupal_add_library('system', 'ui.button');
+      drupal_add_library('system', 'ui.dialog');
+      drupal_add_library('system', 'ui.draggable');
+      drupal_add_library('system', 'ui.droppable');
+      drupal_add_library('system', 'ui.sortable');
+*/
+      
+      $interactive_text = t('Check Your Understanding');
+      switch ($node->field_interactive_type[LANGUAGE_NONE][0]['value']) {
+        
+        case 'browser':
+          // Add quiz specific js / css here.
+          $interactive = theme('browser', array('interactive_text' => $interactive_text));
+          break;
+
+        case 'devices':
+          // Add quiz specific js / css here.
+          $interactive = theme('devices', array('interactive_text' => $interactive_text));
+          break;		
+      }
+      
+      // Add the quiz to the node.
+      $node->content['interactive'] = array(
+        '#markup' => $interactive,
+      );
+    }
+  }
+}
+
+function ezsteps_interactive_theme() {
+  $items['browser'] = array(
+    'variables' => array('interactive_text', NULL),
+    'template' => 'templates/browser',
+  );
+  
+  $items['devices'] = array(
+    'variables' => array('interactive_text', NULL),
+    'template' => 'templates/devices',
+  );
+  return $items;
+}

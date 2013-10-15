@@ -1,0 +1,22 @@
+diff --git a/omega/includes/omega.theme.inc b/omega/includes/omega.theme.inc
+index 0ea7c4d..51e7bab 100644
+--- a/omega/includes/omega.theme.inc
++++ b/omega/includes/omega.theme.inc
+@@ -24,7 +24,7 @@ function omega_pager($vars) {
+   $tags = $vars['tags'];
+   $element = $vars['element'];
+   $parameters = $vars['parameters'];
+-  $quantity = $vars['quantity'];
++  $quantity = isset($vars['quantity']) ? $vars['quantity'] : 10;
+ 
+   // Calculate various markers within this pager piece:
+   // Middle is used to "center" pages around the current page.
+@@ -211,7 +211,7 @@ function omega_views_mini_pager($vars) {
+   $tags = $vars['tags'];
+   $element = $vars['element'];
+   $parameters = $vars['parameters'];
+-  $quantity = $vars['quantity'];
++  $quantity = isset($vars['quantity']) ? $vars['quantity'] : 10;
+ 
+   // Calculate various markers within this pager piece:
+   // Middle is used to "center" pages around the current page.

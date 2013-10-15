@@ -24,7 +24,7 @@ function omega_pager($vars) {
   $tags = $vars['tags'];
   $element = $vars['element'];
   $parameters = $vars['parameters'];
-  $quantity = $vars['quantity'];
+  $quantity = isset($vars['quantity']) ? $vars['quantity'] : 10;
 
   // Calculate various markers within this pager piece:
   // Middle is used to "center" pages around the current page.
@@ -211,7 +211,7 @@ function omega_views_mini_pager($vars) {
   $tags = $vars['tags'];
   $element = $vars['element'];
   $parameters = $vars['parameters'];
-  $quantity = $vars['quantity'];
+  $quantity = isset($vars['quantity']) ? $vars['quantity'] : 10;
 
   // Calculate various markers within this pager piece:
   // Middle is used to "center" pages around the current page.

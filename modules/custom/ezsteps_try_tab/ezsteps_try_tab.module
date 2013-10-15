@@ -10,7 +10,7 @@ function ezsteps_try_tab_field_extra_fields() {
     'display' => array(
       'extra items' => array(
         'label' => t('Extra Items'),
-        'description' => t('WYSIWYG, etc'),
+        'description' => t('WYSIWYG, Register form, etc'),
         'weight' => 0,
       ),
     ),
@@ -46,17 +46,33 @@ function ezsteps_try_tab_node_view_alter(&$build) {
  *   HTML string of content to be added.
  */
 function ezsteps_try_tab_get_extra_items($node) {
+  //dsm('extra items');
   if (!empty($node->field_activity_try_extra_items[LANGUAGE_NONE])) {
     $content = "";
     foreach ($node->field_activity_try_extra_items[LANGUAGE_NONE] as $extra_item) {
       $item = $extra_item['value'];
-      if ($item == 'WYSIWYG') {
-        $profile = wysiwyg_get_profile('full_html');
-        wysiwyg_load_editor($profile);
-        drupal_add_js(drupal_get_path('module', 'ezsteps_try_tab') . '/js/wysiwyg-try.js');
-        // Load the WYSIWYG form and any existing text
-        $extra_text = (!empty($node->field_activity_try_extra_text[LANGUAGE_NONE]) ? $node->field_activity_try_extra_text[LANGUAGE_NONE][0]['value'] : '');
-        $content .= render(drupal_get_form('ezsteps_try_tab_wysiwyg_form', $extra_text));
+      switch ($item)  {
+        case 'WYSIWYG':
+        	$profile = wysiwyg_get_profile('full_html');
+        	wysiwyg_load_editor($profile);
+        	drupal_add_js(drupal_get_path('module', 'ezsteps_try_tab') . '/js/wysiwyg-try.js');
+        	// Load the WYSIWYG form and any existing text
+        	$extra_text = (!empty($node->field_activity_try_extra_text[LANGUAGE_NONE]) ? $node->field_activity_try_extra_text[LANGUAGE_NONE][0]['value'] : '');
+        	$content .= render(drupal_get_form('ezsteps_try_tab_wysiwyg_form', $extra_text));
+        	break;
+        case 'Register-form':
+        	$content .= render(drupal_get_form('user_register_form'));
+        	break;
+        case 'Poll':
+        	$poll = views_embed_view('poll_interactive', 'block_1');
+        	$content .= $poll;
+        	break;
+        case 'Lightbox':
+        	//dsm($node);
+        	$colorbox = render(field_view_field('node', $node, 'field_activity_try_extra_link'));
+        	//dsm($colorbox);
+        	$content .= $colorbox;
+        	break;
       }
     }
     return $content;

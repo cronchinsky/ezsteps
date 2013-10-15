@@ -72,8 +72,8 @@ function ezsteps_module_viewer_persona_select_form($form, $form_state, $module_i
   $form['persona'] = array(
     '#type' => 'radios',
     '#options' => $options,
-    '#title' => 'Choose an Experience',
-    '#prefix' => '<div id=\'ezsteps-persona-instr\'>' . t('Select a learning partner: mouse over the photo then click.') . '</div>',
+    '#title' => 'Choose an experience',
+    
   );
 
   $form['submit'] = array(
@@ -147,9 +147,12 @@ function ezsteps_user_access() {
  */
 function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
 
-  // Add the viewer js.
-  drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') . '/js/viewer.js');
-
+  // Add the viewer js if we are serving the videos from Drupal
+  if (variable_get('ezsteps_video',0)) {
+      drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') . '/js/viewer.js');
+  } else {
+	  drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') . '/js/viewer-brightcove.js');
+  }
   // Set the persona.
   ezsteps_module_viewer_set_persona_cookie($module_num);
 

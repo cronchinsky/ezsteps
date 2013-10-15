@@ -18,6 +18,15 @@ function ezsteps_glue_menu() {
     'title' => t('Access Denied'),
   );
   
+  $items['admin/config/content/ezsteps/settings'] = array (
+  	'title' => 'Easy Steps settings',
+    'description' => 'Video preference',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('ezsteps_glue_admin'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
 /*
   $items['terms'] = array(
     'access callback' => TRUE,
@@ -156,6 +165,21 @@ function ezsteps_glue_get_module_by_number($module_number) {
 
   return $module;
 }
+
+function ezsteps_glue_admin() {
+
+  $form = array();
+  
+  $form['ezsteps_video'] = array(
+    '#type' => 'checkbox',
+    '#description' => 'Check if videos are served from Drupal instead of Brightcove. For internal videos, also enable ezstepsVideoControls.js in ezsteps.info',
+    '#title' => t('Internal video'),
+    '#default_value' => variable_get('ezsteps_video', '0'),  );
+
+  return system_settings_form($form);
+}
+
+
 
 /*
 function ezsteps_glue_terms_page() {

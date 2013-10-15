@@ -700,6 +700,41 @@ a.ezsteps-module-viewer-help-link {
   display:none;
 }
 
+.ezsteps-extra-items #user-register-form {
+  margin: 0 auto;
+  width: 550px;
+  padding-top: 20px;
+}
+
+.ezsteps-extra-items #user-register-form .form-item-agree-to-terms {
+	width: 400px;
+}
+
+.ezsteps-extra-items .view-poll-interactive .item-list {
+	margin: 20px 20px 50px 20px;
+} 
+
+.ezsteps-extra-items .view-poll-interactive ul.pager li {
+	background-image: none;
+	border: none;
+}
+
+.ezsteps-extra-items .view-poll-interactive ul.pager li a {
+	background-image: none;
+	border: none;
+	width: 80px;
+	color: #0062A0;
+
+}
+
+.ezsteps-extra-items .view-poll-interactive ul.pager li a:hover {
+	background:none;
+	color: black;
+}
+.ezsteps-extra-items .view-poll-interactive .pager li.pager-current {
+	/* margin-left: 190px; */
+	color: black;
+}
 
 /* Front Page */
 #region-sidebar-second .block {
@@ -976,31 +1011,51 @@ a.ezsteps-complete-page-certificate-link  {
    margin-left: 0;
  }
  .page-persona-select .region-content{
-     background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 60px;
+    /* background: url('../images/Intel-die-shape_960px.png') no-repeat 0px 60px;*/
   }
 .page-persona-select .node {
    padding: 0;
    }
-#edit-persona {
-   margin-top: 100px;
-   margin-left: 100px;
+.persona-select-video {
+   margin: 0 50% 0 20px;
+}
+.persona-select-video #watch-video {
+   margin-left: 50px;
+}
+.persona-select-video h2.block-title {
+   margin: 20px 0;
+   font-size: 20px;
+}
+.persona-select-video p {
+   margin-bottom: 20px;
+}
+#ezsteps-module-viewer-persona-select-form {
+   float:right;
+   margin: -50px 0 20px 20px;
+   width: 330px;
+}
+#ezsteps-module-viewer-persona-select-form .form-item, .form-actions {
+   margin-top: 0;
+}
+#edit-persona .form-item-persona {
+  float: left;
+  width: 134px;
+}
+.persona-select-video .step1 {
+   background: url('../images/bl-circle-1.png') no-repeat left top;
+   min-height: 40px;
+   padding: 14px 0 0 48px;
+   font-weight: bold;
+}
+#ezsteps-module-viewer-persona-select-form label[for="edit-persona"] {
+   background: url('../images/bl-circle-2.png') no-repeat left top;
+   min-height: 40px;
+   padding: 14px 0 0 48px;
 }
 #edit-persona header {
  position: absolute; 
- left: -999em;    
+ left: -999em;  
 }
-#edit-persona .form-item-persona {
-	width: 180px;
-	float: left;
-	margin: 20px 30px;
-	padding: 0;
-	height: 160px
-}
-.form-item-persona {
-   color: #0071C5;
-   margin-left: 20px;
-}
-
 #edit-persona .form-item-persona img {
     border: solid 5px transparent;
 }
@@ -1010,12 +1065,19 @@ a.ezsteps-complete-page-certificate-link  {
  }
  
 #ezsteps-persona-instr {
-  left:240px;
-  position:absolute;
-  top:85px;
-  width:260px;
-  color: #fff;
+  margin: 1.5em 1em;
    }
+#ezsteps-module-viewer-persona-select-form input[type="submit"] {
+  margin: 20px 0 0 0;
+  color:white;
+  text-shadow:none;
+  border-radius:5px;
+  background-color:#0071c5;
+  background-image:none;
+  padding:5px 15px;
+  border-color: transparent;
+  float: right;
+}
 
 /* basic pages: terms of use, help */
 
@@ -1023,12 +1085,17 @@ a.ezsteps-complete-page-certificate-link  {
 	padding: 20px;
 }
 
-/* Hacks to remove */
 
-#ezsteps-module-viewer.module-0 .field-name-field-activity-try-help-link {
-	background: url('../images/EasyStepsForm600.png') no-repeat center center;
-	height: 340px;
+
+
+/* Interactive pages */
+
+.node-type-interactive header {
+	display: none;
 }
+
+
+/* Hacks to remove */
 
 #ezsteps-module-viewer.module-0 .ezsteps-help-guide-link-label,
 #ezsteps-module-viewer.module-0 .field-name-field-activity-try-help-link .field-items {

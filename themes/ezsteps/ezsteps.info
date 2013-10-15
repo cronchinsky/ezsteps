@@ -50,6 +50,7 @@ zones[footer] = Footer
 
 ; scripts
 
+// moved to template.php for Brightcove option
 scripts[] = js/ezstepsVideoControls.js
 
 

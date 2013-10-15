@@ -1,0 +1,4 @@
+name = EZ Steps Interactive
+core = 7.x
+description = Integration for javascript interactive.
+package = ezsteps
