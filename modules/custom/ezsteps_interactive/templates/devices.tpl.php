@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/devicedrag.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery.ui.touch-punch.min.js"></script>
 
-<div id="wrapper">
+<div id="wrapper-parts">
   <h2>Activity 2: Learning the Parts of the Computer</h2>
   <p id="directions">Directions: Drag the right name to each part of the computer.</p>
   <div id="field"> 

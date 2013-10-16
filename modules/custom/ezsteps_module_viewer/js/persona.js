@@ -7,6 +7,12 @@
         $(this).closest('.form-item').find('input[name=persona]').attr('checked',true);
         $('input[type=submit]').click();
      });
+     
+     $('a.persona-select-link').each(function() {
+	     var personaImage = $(this).contents();
+	     $(this).replaceWith(personaImage);
+	     
+      });
     }
   };
 })(jQuery);

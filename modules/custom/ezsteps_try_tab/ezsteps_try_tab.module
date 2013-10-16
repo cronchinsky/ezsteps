@@ -69,9 +69,8 @@ function ezsteps_try_tab_get_extra_items($node) {
         	break;
         case 'Lightbox':
         	//dsm($node);
-        	$colorbox = render(field_view_field('node', $node, 'field_activity_try_extra_link'));
-        	//dsm($colorbox);
-        	$content .= $colorbox;
+        	//$colorbox = render(field_view_field('node', $node, 'field_activity_try_extra_link'));
+        	//$content .= $colorbox;
         	break;
       }
     }

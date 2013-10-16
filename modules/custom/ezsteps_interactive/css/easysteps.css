@@ -3,14 +3,23 @@
 
 body {
 	font-family: Tahoma, Geneva, sans-serif;
+
+	background-color: blue;
 }
-#wrapper {
+#region-content-inner {
+	height: 550px;
+}
+#wrapper-parts, #wrapper-browser {
 	background-color: #f5f5f5;
 	margin: 0px auto;
 	width: 920px;
 	display: block;
 	border: 3px solid #858688;
-	height: 650px;
+	height: 520px;
+}
+
+#wrapper-browser {
+	height: 600px;
 }
 h2 {
 	color: #0072c5;
@@ -47,7 +56,7 @@ a:hover {
 	font-size: 0.9em;
 	overflow: hidden;
 	cursor: pointer;
-	z-index: 1000;
+	z-index: 100;
 	position: absolute;
 }
 .draggable li:last-child {
@@ -217,7 +226,7 @@ a:hover {
 	/*opacity:0.5;*/
 	
 	/*ie browsers*/
-	filter: alpha(opacity=50);
+	/*filter: alpha(opacity=50);*/
 }
 
 .cpu{

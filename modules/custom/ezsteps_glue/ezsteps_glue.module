@@ -179,7 +179,12 @@ function ezsteps_glue_admin() {
   return system_settings_form($form);
 }
 
-
+/**
+ * Hide persona selection on the profile page.
+ */
+function ezsteps_glue_form_user_profile_form_alter(&$form, &$form_state) {
+	hide($form['field_user_persona']);
+}
 
 /*
 function ezsteps_glue_terms_page() {

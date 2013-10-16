@@ -89,13 +89,14 @@ $(document).ready(function () {
 		var myString;
 		
 		myString = myInt.toString()+'px';
-		// console.log("myString: " + myString);
+	
 		return myString;
 	}
 	function removeHoverStates()
 	{
 		for (var i = 0; i < dragItems.length; i++)
 		{
+		//	console.log('removing hover state');
 			var containerID = '#'+dragItems[i]+'_con';
 				
 				
@@ -250,15 +251,17 @@ $(document).ready(function () {
 				// if there is a collision between dragged item and target
 				if (overlaps(targetID, this))
 				{
-						removeHoverStates();
-						disableTargets(targetID);
+					// console.log('hover class: ' + hoverClass);
+					//	removeHoverStates();
+					//	disableTargets(targetID);
 						$(containerID).css('border-color','#0072c5');
 						$(targetID).removeClass(regClass);
 						$(targetID).addClass(hoverClass);
-						console.log("hitting" + targetID);
+					//	console.log("hitting" + targetID);
          	    }
 				else
 				{
+				//	console.log('no overlap with ' + targetID);
 					$(containerID).css('border-color','black');
 					$(targetID).removeClass(hoverClass);
 					$(targetID).addClass(regClass);

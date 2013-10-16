@@ -17,6 +17,13 @@
 
         } */
       });
+      
+      // return user to the try tab when closing an interactive
+      $("a.colorbox-load").colorbox({
+	      onCleanup: function() {
+		      $('.horizontal-tab-button.first a').click();
+        },
+      });
     }
   };
 })(jQuery);

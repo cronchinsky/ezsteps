@@ -80,7 +80,6 @@ function ezsteps_module_viewer_persona_select_form($form, $form_state, $module_i
     '#type' => 'submit',
     '#value' => 'Continue',
   );
-
   return $form;
 }
 
@@ -88,6 +87,7 @@ function ezsteps_module_viewer_persona_select_form($form, $form_state, $module_i
  * Submit function for the persona selection form.
  */
 function ezsteps_module_viewer_persona_select_form_submit(&$form, &$form_state) {
+  
   // Get the nid selected by the user.
   $target_id = $form_state['values']['persona'];
 
@@ -320,7 +320,6 @@ function ezsteps_module_viewer_block_view($delta) {
           $ids = array_keys($result['field_collection_item']);
           $collection = entity_load('field_collection_item', $ids);
           $collection = array_pop($collection);
-
           // Spit out the rendered field collection as the block.
           return array(
             'subject' => '',

@@ -241,7 +241,8 @@ $(document).ready(function () {
 						// if the scrollbar isn't active OR I em touching the scrollbar area
 						if (($('#scrollbar_target').attr('class') != 'ui-droppable hover' || 
 						targetID =='#scrollbar_target'))
-						{					
+						{				
+							console.log('add hover class');	
 							$(targetID).addClass(hoverClass);
 							$('#scrollbar_target').droppable('option','tolerance','touch');
 						}
@@ -254,7 +255,7 @@ $(document).ready(function () {
 						{
 							case 'address_bar':
 							// if we are not dragging the toolbar, remove the toolbar class
-							if (itemID !='toolbar')
+						 if (itemID !='ezsteps_toolbar')
 							$('#ezsteps_toolbar_target').removeClass('hover');
 							
 							$('#titlebar_target').removeClass('hover');

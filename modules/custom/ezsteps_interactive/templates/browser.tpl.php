@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/browserdrag.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery.ui.touch-punch.min.js"></script>
 
-<div id="wrapper">
+<div id="wrapper-browser">
 	<h2>Activity 1: Learning Internet and Web Browser Basics</h2>
 	<p id="directions">Directions: Drag the words to place them in the proper locations on the browser image.</p>
 	

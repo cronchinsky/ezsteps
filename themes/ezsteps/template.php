@@ -1,20 +1,6 @@
 <?php
 
 /**
- * Implements template_preprocess_page().
- * 
- * Adds javascript if serving internal video.
- */
- 
-function ezsteps_preprocess_page(&$vars) {
-
-  
-
-
-}
-
-
-/**
  * Implements template_preprocess_field().
  * 
  * Adds the learn more hover js to module objective fields.
