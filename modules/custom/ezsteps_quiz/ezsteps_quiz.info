@@ -1,3 +1,4 @@
 name = Easy Steps Quiz
 description = Handling for the Quiz node type.
 core = 7.x
+package = ezsteps

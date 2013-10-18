@@ -84,7 +84,9 @@ body {
 }
 
 .container-12 .grid-8 {
-  width: 620px;
+  width: 600px;
+  padding-left: 15px;
+  padding-top: 6px;
 }
 
 .container-12 .grid-9 {

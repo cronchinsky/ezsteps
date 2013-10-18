@@ -21,10 +21,28 @@ function ezsteps_quiz_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE
       ),
-      'response' => array(
-        'description' => 'The user\'s submitted content',
+      'response_a' => array(
+        'description' => 'The user\'s response to the first question',
         'type' => 'text',
         'size' => 'big',
+        'not null' => TRUE
+      ),
+      'response_b' => array(
+        'description' => 'The user\'s response to the second question',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE
+      ),
+      'radio_yes' => array(
+        'description' => 'Yes responses to radio buttons',
+        'type' => 'text',
+        'size' => 'medium',
+        'not null' => TRUE
+      ),
+      'radio_np' => array(
+        'description' => 'Needs practice responses to radio buttons',
+        'type' => 'text',
+        'size' => 'medium',
         'not null' => TRUE
       ),
     ),
@@ -45,3 +63,13 @@ function ezsteps_quiz_schema() {
   
   return $tables;
 }
+
+/*
+function ezsteps_quiz_uninstall() {
+  db_query('DROP TABLE {ezsteps_quiz_response}');
+  cache_clear_all('*', 'cache', TRUE);
+  cache_clear_all('*', 'cache_filter', TRUE);
+  cache_clear_all('*', 'cache_menu', TRUE);
+  cache_clear_all('*', 'cache_page', TRUE);
+ }
+*/

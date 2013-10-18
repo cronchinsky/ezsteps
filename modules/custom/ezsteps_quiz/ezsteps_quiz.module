@@ -19,8 +19,7 @@ function ezsteps_quiz_node_view($node) {
 }
 
 function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
-  
-  dsm($node);
+
   $header = '<h3>'. t('For Your Journal') .'</h3>'. $node->field_radio_question[LANGUAGE_NONE][0]['safe_value'];
   
   $form['header'] = array(
@@ -28,12 +27,12 @@ function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
   	'#markup' => $header	,
   );
 
-  
+  // set up the radio button questions
   $i = 0;
   foreach ($node->field_radio_question_prompt[LANGUAGE_NONE] as $radio_prompt)  {	  
 	  $form['open_ended']['radios'][$i] = array(
 	    '#type' => 'radios',
-	    '#title' => t("Radio Questions"),
+	    '#title' => t($radio_prompt['value']),
 	    '#title_display' => 'invisible',
 	    '#required' => TRUE,
 	    '#prefix' => '<div id="ezsteps-radio-prompt">' . $radio_prompt['value'] . '</div>',
@@ -42,7 +41,8 @@ function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
 	  $i++;	  	
   }
 
-
+  // set up the open ended response questions
+  $i = 20;
   foreach ($node->field_quiz_open_ended_prompt[LANGUAGE_NONE] as $open_ended_prompt)  {
 	  $form['open_ended']['text'][$i] = array(
 	    '#type' => 'textarea',
@@ -60,14 +60,37 @@ function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
 
 function ezsteps_quiz_open_ended_form_submit($form, &$form_state) {
   global $user;
-  $response = $form['open_ended']['text']['9']['#value'];
+  
+  // go through the radio questions and separate into yes and needs practice responses
+  //
+  $i = 0;
+  $yes = '';
+  $needs_practice = '';
+  foreach ($form['open_ended']['radios'] as $key => $radio_prompt)  {
+	  
+	 if (is_int($key)) {
+		  if ($radio_prompt['#value'] == '0') {
+			  $needs_practice .= $radio_prompt['#title'] . ',';
+		  } else {
+			  $yes .= $radio_prompt['#title'] . ',';
+		  }
+		  $i++;
+      }
+  }
+  
+  
+  $response = $form['open_ended']['text']['20']['#value'];
+  $response_b = $form['open_ended']['text']['21']['#value'];
   $query = db_merge('ezsteps_quiz_response')
       ->key(array(
         'uid' => $user->uid,
         'module_num' => arg(1),
       ))
       ->fields(array(
-        'response' => $response,
+        'response_a' => $response_b,
+        'response_b' => $response_b,
+        'radio_yes' => $yes,
+        'radio_np' => $needs_practice,
       ))
       ->execute();
 
@@ -87,7 +110,7 @@ function ezsteps_quiz_response_get($module_num, $uid = NULL) {
   }
 
   $result = $query = db_select('ezsteps_quiz_response', 'ezqr')
-          ->fields('ezqr', array('response'))
+          ->fields('ezqr', array('response_a', 'response_b','radio_yes','radio_np'))
           ->condition('ezqr.module_num', $module_num)
           ->condition('ezqr.uid', $uid)
           ->execute()->fetchAll();
@@ -95,6 +118,5 @@ function ezsteps_quiz_response_get($module_num, $uid = NULL) {
   if (empty($result)) {
     return FALSE;
   }
-
-  return array_pop($result)->response;
+  return $result;
 }

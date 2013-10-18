@@ -72,12 +72,11 @@ function ezsteps_certificate_theme() {
     'template' => 'templates/ezsteps_complete_page',
   );
 
-  $theme['ezsteps_certificate'] = array(
+  $theme['ezsteps_journal'] = array(
     'variables' => array(
       'module_num' => 0,
-      'response' => "GO",
     ),
-    'template' => 'templates/ezsteps_certificate',
+    'template' => 'templates/ezsteps_journal',
   );
 
   return $theme;
@@ -90,10 +89,22 @@ function ezsteps_certificate_theme() {
  *   the module number that the user has completed.
  */
 function ezsteps_certificate_print($module_num) {
-  require_once(drupal_get_path('module', 'ezsteps_certificate') . '/dompdf/dompdf_config.inc.php');
-  $html = theme('ezsteps_certificate', array(
+  require_once(drupal_get_path('module', 'ezsteps_certificate') . '/dompdf/dompdf_config.inc.php');  
+  // get the module info
+  $module = ezsteps_glue_get_module_by_number($module_num); 
+  // get the quiz info for the module
+  $quiz = node_load($module->field_module_activities[LANGUAGE_NONE]['6']['target_id']);
+  // get the responses 
+  $responses = ezsteps_quiz_response_get($module_num);  
+  $html = theme('ezsteps_journal', array(
     'module_num' => $module_num,
-    'response' => ezsteps_quiz_response_get($module_num),
+    'module_title' => $module->title,
+    'question_a' => $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][0]['safe_value'],
+    'question_b' => $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][1]['safe_value'],
+    'response_a' => $responses[0]->response_a,
+    'response_b' => $responses[0]->response_b,
+    'radio_yes' => $responses[0]->radio_yes,
+    'radio_np' => $responses[0]->radio_np,
   ));
   $dompdf = new DOMPDF();
   $dompdf->load_html($html);

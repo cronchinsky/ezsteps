@@ -6,11 +6,11 @@ a:link, a:visited {
 }
 
 /** User registration **/
-/*
+
 .page-user .tabs {
   display:none;
 }
-*/
+
 
 #ezsteps-registration-title {
 	text-indent: -9999px;
@@ -74,14 +74,14 @@ a:link, a:visited {
 }
 
 #zone-user {
-  height:56px;
+  height:60px;
   background: #0071c5; /* Old browsers */
-  background: -moz-linear-gradient(left,  #0071c5 0%, #004280 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0071c5), color-stop(100%,#004280)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left,  #0071c5 0%,#004280 100%); /* IE10+ */
-  background: linear-gradient(to right,  #0071c5 0%,#004280 100%); /* W3C */
+  /* background: -moz-linear-gradient(left,  #0071c5 0%, #004280 100%); /* FF3.6+ */
+  /* background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0071c5), color-stop(100%,#004280)); /* Chrome,Safari4+ */
+  /* background: -webkit-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Chrome10+,Safari5.1+ */
+  /* background: -o-linear-gradient(left,  #0071c5 0%,#004280 100%); /* Opera 11.10+ */
+  /* background: -ms-linear-gradient(left,  #0071c5 0%,#004280 100%); /* IE10+ */
+  /* background: linear-gradient(to right,  #0071c5 0%,#004280 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071c5', endColorstr='#004280',GradientType=1 ); /* IE6-9 */
 }
 
@@ -206,8 +206,13 @@ a:link, a:visited {
 
 .ezsteps-nav-circle a {
   text-decoration:none;
-  color:black;
+  color:#858688;
+  font-weight: bold;
   font-size: .85em;
+}
+
+.ezsteps-nav-circle a:hover  {
+  color: black;
 }
 
 .ezsteps-nav-circle-link {
@@ -285,14 +290,6 @@ a:link, a:visited {
 
 
 
-/*
-.ezsteps-nav-circle:hover  {
-  font-weight:bold;
-}
-*/
-
-
-
 .ezsteps-nav-text-wrapper {
   padding:0px 4px;
   position:relative;
@@ -300,9 +297,8 @@ a:link, a:visited {
   line-height: 13px;
 }
 
-.ezsteps-nav-text-wrapper:hover {
+.ezsteps-nav-text-wrapper {
 	padding: 0;
-	font-weight: bold;
 }
 
 #ezsteps-nav-line {
@@ -519,15 +515,13 @@ a:link, a:visited {
   padding: 0px 25px;
 }
 
+/* remove padding for activities without a download item */
+#node-activity-20 .field-name-field-activity-try-intro-text {
+	width: 520px;
+}
+
 .xx-group-activity-try-intro {
- background: #7db9e8; /* Old browsers */
- background: -moz-linear-gradient(left, #7db9e8 0%, #1e5799 61%); /* FF3.6+ */
- background: -webkit-gradient(linear, left top, right top, color-stop(0%,#7db9e8), color-stop(61%,#1e5799)); /* Chrome,Safari4+ */
- background: -webkit-linear-gradient(left, #7db9e8 0%,#1e5799 61%); /* Chrome10+,Safari5.1+ */
- background: -o-linear-gradient(left, #7db9e8 0%,#1e5799 61%); /* Opera 11.10+ */
- background: -ms-linear-gradient(left, #7db9e8 0%,#1e5799 61%); /* IE10+ */
- background: linear-gradient(to right, #7db9e8 0%,#1e5799 61%); /* W3C */
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=1 ); /* IE6-9 */
+ background: #0071C5; /* Old browsers */
  color: white;
  font-weight: bold;
  padding-bottom: 15px;
@@ -535,8 +529,8 @@ a:link, a:visited {
 }
 
 .group-activity-try-intro {
- background: #7db9e8; /* Old browsers */
- background: url('../images/Intel-gradient_660px.png') repeat-y left top;
+ background: #0071C5; 
+ /* background: url('../images/Intel-gradient_660px.png') repeat-y left top; */
  color: white;
  font-weight: bold;
  padding-bottom: 15px;
@@ -732,6 +726,10 @@ a.ezsteps-module-viewer-help-link {
 
 .ezsteps-extra-items .filter-wrapper {
   display:none;
+}
+
+.ezsteps-extra-items #cke_bottom_edit-try-wysiwyg-value {
+	display: none;
 }
 
 .ezsteps-extra-items #user-register-form {
@@ -1061,14 +1059,18 @@ a.ezsteps-complete-page-certificate-link  {
    font-size: 20px;
 }
 .persona-select-video p {
-   margin-bottom: 20px;
+   margin-bottom: 9px;
+}
+.persona-select-video object {
+	padding-left:30px;
 }
 #ezsteps-module-viewer-persona-select-form {
    float:right;
-   margin: -50px 0 20px 20px;
+   margin: -394px 0 20px 20px;
    width: 330px;
 }
-#ezsteps-module-viewer-persona-select-form .form-item, .form-actions {
+#ezsteps-module-viewer-persona-select-form .form-item, 
+#ezsteps-module-viewer-persona-select-form .form-actions {
    margin-top: 0;
 }
 #edit-persona .form-item-persona {
@@ -1078,7 +1080,7 @@ a.ezsteps-complete-page-certificate-link  {
 .persona-select-video .step1 {
    background: url('../images/bl-circle-1.png') no-repeat left top;
    min-height: 40px;
-   padding: 14px 0 0 48px;
+   padding: 18px 0 0 48px;
    font-weight: bold;
 }
 #ezsteps-module-viewer-persona-select-form label[for="edit-persona"] {
