@@ -47,6 +47,7 @@
       // Create a question object and set the prompt based on the printed field value.
       var question = {  
         prompt: $(questionDiv).find('.field-name-field-quiz-prompt > .field-items > .field-item').html(),
+        image: $(questionDiv).find('.field-name-field-quiz-image > .field-items > .field-item').html(),
         answers: []
       }
 
@@ -145,7 +146,10 @@
       $wrapper.append('<div class="ezsteps-quiz-no">Question ' + number + '</div>');  
       
       // Add div for the prompt.
-      $wrapper.append('<div class="ezsteps-quiz-prompt">' + question.prompt + '</div>');          
+      $wrapper.append('<div class="ezsteps-quiz-prompt">' + question.prompt + '</div>');
+      if (question.image) {
+      	$wrapper.append('<div class="ezsteps-quiz-image">' + question.image + '</div>');  
+      }        
       var $answers = ('<div class="ezsteps-quiz-answers"></div>');
 
       
