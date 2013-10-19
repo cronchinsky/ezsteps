@@ -7,7 +7,7 @@
  */
 function ezsteps_preprocess_field($variables, $hook) {
   if ($variables['element']['#field_name'] == 'field_module_objectives') {
-    drupal_add_js(drupal_get_path('theme','ezsteps') . '/js/learn-more-hover.js');
+    drupal_add_js(drupal_get_path('theme','ezsteps') . '/js/learn-more-hover.js');	
   }
 }
 
@@ -15,11 +15,15 @@ function ezsteps_preprocess_field($variables, $hook) {
  * Implements template_preprocess_node().
  * 
  * Adds theme hook suggestions for teaser view modes.
+ * Adds ezsteps utility javascript to activities
  */
 function ezsteps_preprocess_node(&$vars) {
-  if($vars['view_mode'] == 'teaser') {
+ if($vars['view_mode'] == 'teaser') {
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->type . '__teaser';   
     $vars['theme_hook_suggestions'][] = 'node__' . $vars['node']->nid . '__teaser';
+  }
+  if ($vars['node']->type == 'activity')  {
+  	drupal_add_js(drupal_get_path('theme','ezsteps') . '/js/ezsteps.js');
   }
 }
 

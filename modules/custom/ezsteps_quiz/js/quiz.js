@@ -114,14 +114,16 @@
   Quiz.prototype.correct = function () {
     
     // Add a next button to the quiz that calls Quiz.next() when clicked.
-    var $nextButton = $('<a href="#">Next >></a>');
+    var $nextButton = $('<a id="next" href="#">Next >></a>');
     var quiz = this;
-    $div = $('<div class="ezsteps-quiz-next-wrapper"></div>');
-    $div.append($nextButton);
-    this.$wrapper.append($div);
-    $('.ezsteps-quiz-next-wrapper a').click(function () {
-      quiz.next();
-    });
+    if ($('#next').length == 0) {
+	    $div = $('<div class="ezsteps-quiz-next-wrapper"></div>');
+	    $div.append($nextButton);
+	    this.$wrapper.append($div);
+	    $('.ezsteps-quiz-next-wrapper a').click(function () {
+	      quiz.next();
+	    });
+    }
   }
   
   // A function for showing the user feedback, can be switched to do some modal

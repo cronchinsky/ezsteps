@@ -460,7 +460,7 @@ a:link, a:visited {
 
 .field-name-field-activity-try-steps a:link,
 .field-name-field-activity-try-steps a:visited {
-  color: #fdbb13;
+  color: #0062A0;
 }
 
 .field-name-field-activity-try-intro-text {
@@ -516,7 +516,9 @@ a:link, a:visited {
 }
 
 /* remove padding for activities without a download item */
-#node-activity-20 .field-name-field-activity-try-intro-text {
+#node-activity-20 .field-name-field-activity-try-intro-text,
+#node-activity-31 .field-name-field-activity-try-intro-text,
+#node-activity-30 .field-name-field-activity-try-intro-text {
 	width: 520px;
 }
 
@@ -642,8 +644,13 @@ a:link, a:visited {
  	text-indent: -9999px;
 }
 
+#internet-guidelines {
+	background-color:#d3d3d3;
+}
 
-
+#internet-safety-guidelines {
+	background-color:#d3d3d3;
+}
 
 
 
@@ -1148,3 +1155,52 @@ body.node-type-interactive {
 #ezsteps-module-viewer.module-0 .ezsteps-help-guide-link-label {
 	display: none;
 }
+
+/*
+ *  register form & profile form styles 
+ */
+
+
+/*labels above field*/
+form#user-register-form label,
+form#user-profile-form label {
+	color: #0071c5; 
+	margin-bottom: 4px;
+}
+
+/*password strength text color*/
+form#user-profile-form .password-strength-title, div.password-strength-text {
+	color: #0071c5;
+}
+
+/*descriptions below text fields*/
+form#user-register-form .description,
+form#user-profile-form .description {
+	color: black;
+	margin-top: 14px;
+	margin-left: 2px;
+}
+
+/*adds space between local settings show/hide link and time zone*/
+form#user-profile-form div.fieldset-wrapper {
+	padding-top: 2px;
+}
+
+/*border color of input fields*/
+form#user-register-form input.form-text,
+form#user-profile-form input.form-text,
+form#user-profile-form select.form-select {
+	border: 1px solid #a2a3a7;
+}
+
+/*password suggestions bullet list*/
+form#user-profile-form div.password-suggestions ul {
+	margin-left: 20px;
+}
+
+/*submit button hover state*/
+form#user-register-form input.form-submit:hover,
+form#user-profile-form input.form-submit:hover {
+	background-color: #0071c5; 
+}
+

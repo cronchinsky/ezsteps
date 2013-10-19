@@ -242,7 +242,7 @@ $(document).ready(function () {
 						if (($('#scrollbar_target').attr('class') != 'ui-droppable hover' || 
 						targetID =='#scrollbar_target'))
 						{				
-							console.log('add hover class');	
+					
 							$(targetID).addClass(hoverClass);
 							$('#scrollbar_target').droppable('option','tolerance','touch');
 						}
@@ -250,6 +250,7 @@ $(document).ready(function () {
 						
 					}
 						
+						console.log('target: ' + myTarget);
 						// for whatever target we just got into, shut off other adjacent targets
 						switch (myTarget)
 						{
@@ -262,8 +263,8 @@ $(document).ready(function () {
 							
 							if ($('#titlebar_target').attr('class')!='ui-droppable hover')
 							{
-								$('#titlebar_target').droppable('option','tolerance','fit');
-								$('#address_bar_target').droppable('option','tolerance','touch');
+								$('#titlebar_target').droppable('option','tolerance','intersect');
+								$('#address_bar_target').droppable('option','tolerance','intersect');
 							}
 							break;
 							
@@ -285,26 +286,29 @@ $(document).ready(function () {
 							if ($('#titlebar_target').attr('class')!='ui-droppable hover')
 							{
 									$('#titlebar_target').removeClass('hover');
-								$('#titlebar_target').droppable('option','tolerance','fit');	
-								$('#ezsteps_toolbar_target').droppable('option','tolerance','touch');
+								$('#titlebar_target').droppable('option','tolerance','intersect');	
+								$('#ezsteps_toolbar_target').droppable('option','tolerance','intersect');
 							}
 							break;
 							
 							case 'titlebar':
 							
-							console.log('titlebar');
+						
 							if ($('#ezsteps_toolbar_target').attr('class')!='ui-droppable hover'
 							&& $('#address_bar_target').attr('class')!='ui-droppable hover')
 							{
 								$('#ezsteps_toolbar_target').droppable('option','tolerance','fit');
 								$('#address_bar_target').droppable('option','tolerance','fit');
-								$('#titlebar_target').droppable('option','tolerance','fit');
+								$('#titlebar_target').droppable('option','tolerance','intersect');
 							}
 				
 							break;
 							
 							case 'display':
-						
+							
+							
+							$('#ezsteps_toolbar_target').removeClass('hover');
+							$('#address_bar_target').removeClass('hover');
 							//$('#titlebar_target').removeClass('hover');
 							
 							// make sure it doesn't land on scrollbar if it is not highlighted. 
@@ -417,10 +421,10 @@ $(document).ready(function () {
 	}
 	function setTolerance()
 	{
-		$('#address_bar_target').droppable('option','tolerance','touch');
+		$('#address_bar_target').droppable('option','tolerance','intersect');
 		$('#scrollbar_target').droppable('option','tolerance','touch');
 		$('#titlebar_target').droppable('option','tolerance','intersect');
 		$('#display_target').droppable('option','tolerance','pointer');
-		$('#ezsteps_toolbar_target').droppable('option','tolerance','touch');
+		$('#ezsteps_toolbar_target').droppable('option','tolerance','intersect');
 	}
 });

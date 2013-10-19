@@ -53,9 +53,12 @@ function ezsteps_certificate_is_module_complete($module_num, $uid = NULL) {
  *   The number of the module the user has completed.
  */
 function ezsteps_certificate_complete_page($module_num) {
-
+  $module = ezsteps_glue_get_module_by_number($module_num);
+  $complete_header = t('Congratulations You\'ve Completed Module') . $module_num . ': ' . t($module->title);
+  $download_text = t('Be sure to download and save, or print, your Journal page for your records.');
   return theme('ezsteps_complete_page', array(
-        'module_num' => $module_num,
+        'complete_header' => $complete_header,
+        'download_text' => $download_text,
       ));
 }
 

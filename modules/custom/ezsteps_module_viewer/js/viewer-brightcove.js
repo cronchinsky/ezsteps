@@ -4,7 +4,6 @@
          
       // Hopefully we will add Brightcove API code to stop and start the player
              // Brightcove Learning namespace
-/*
 		var BCLS = {};
 		console.log('bsls script');
 		//template loaded event handler
@@ -20,7 +19,6 @@
 		  console.log("template ready");
 		  BCLS.videoPlayer = BCLS.player.getModule(BCLS.APIModules.VIDEO_PLAYER);
 		};
-*/
 		
       // Opens the learn tab to start.
       $('.horizontal-tab-button.last a').click();
