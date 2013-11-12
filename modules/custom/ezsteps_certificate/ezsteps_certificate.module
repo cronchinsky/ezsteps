@@ -12,7 +12,7 @@ function ezsteps_certificate_menu() {
     'title' => 'Module Complete!',
   );
 
-  $items['certificate/%'] = array(
+  $items['journal/%'] = array(
     'access callback' => 'ezsteps_certificate_is_module_complete',
     'access arguments' => array(1),
     'page callback' => 'ezsteps_certificate_print',
@@ -54,11 +54,12 @@ function ezsteps_certificate_is_module_complete($module_num, $uid = NULL) {
  */
 function ezsteps_certificate_complete_page($module_num) {
   $module = ezsteps_glue_get_module_by_number($module_num);
-  $complete_header = t('Congratulations You\'ve Completed Module') . $module_num . ': ' . t($module->title);
+  $complete_header = t('Congratulations You\'ve Completed Module ') . $module_num . ': ' . t($module->title);
   $download_text = t('Be sure to download and save, or print, your Journal page for your records.');
   return theme('ezsteps_complete_page', array(
         'complete_header' => $complete_header,
         'download_text' => $download_text,
+        'module_num' => $module_num,
       ));
 }
 
@@ -93,25 +94,69 @@ function ezsteps_certificate_theme() {
  */
 function ezsteps_certificate_print($module_num) {
   require_once(drupal_get_path('module', 'ezsteps_certificate') . '/dompdf/dompdf_config.inc.php');  
+  
+  global $user;  
+  $full_user = user_load($user->uid);  
+  $first_name = $full_user->field_user_first_name[LANGUAGE_NONE][0]['safe_value'];
+  $last_name = $full_user->field_user_last_name[LANGUAGE_NONE][0]['safe_value'];
+  //$time_zone = get_default_timezone();
+  //date_default_timezone_set($time_zone);
+  $date = date("F j, Y");
   // get the module info
   $module = ezsteps_glue_get_module_by_number($module_num); 
+  $journal_name = t('journal') . '_M' . $module_num;
+  
   // get the quiz info for the module
-  $quiz = node_load($module->field_module_activities[LANGUAGE_NONE]['6']['target_id']);
+  // the self check is always the last activity
+  $self_check = end($module->field_module_activities[LANGUAGE_NONE]);
+  $quiz = node_load($self_check['target_id']);
   // get the responses 
-  $responses = ezsteps_quiz_response_get($module_num);  
+  $responses = ezsteps_quiz_response_get($module_num); 
+  
+  $yes = explode("|",$responses[0]->radio_yes);
+  $np = explode("|",$responses[0]->radio_np);
+  
+  if(empty($yes[count($yes)-1])) {
+    unset($yes[count($yes)-1]);
+  }
+  
+  if(empty($np[count($np)-1])) {
+    unset($np[count($np)-1]);
+  }
+  
+  $yes_html = "<ul>";
+  foreach ($yes as $item) {
+	  $yes_html .= "<li>" . $item . "</li>";
+  }
+  $yes_html .= "</ul>";
+  
+  $np_html = "<ul>";
+  foreach ($np as $item) {
+	  $np_html .= "<li>" . $item . "</li>";
+  }
+  $np_html .= "</ul>";
+  $journal_image = $GLOBALS['base_url'] . '/sites/ezsteps.edc.org/files/journal/journal_header.jpg'; 
+  $question_a = (empty($quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][0]['safe_value']) ? '' : $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][0]['safe_value']);
+  $question_b = (empty($quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][1]['safe_value']) ? '' : $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][1]['safe_value']);
+  $response_a = (empty($responses[0]->response_a) ? '' : $responses[0]->response_a);
+  $response_b = (empty($responses[0]->response_b) ? '' : $responses[0]->response_b);
   $html = theme('ezsteps_journal', array(
     'module_num' => $module_num,
     'module_title' => $module->title,
-    'question_a' => $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][0]['safe_value'],
-    'question_b' => $quiz->field_quiz_open_ended_prompt[LANGUAGE_NONE][1]['safe_value'],
-    'response_a' => $responses[0]->response_a,
-    'response_b' => $responses[0]->response_b,
-    'radio_yes' => $responses[0]->radio_yes,
-    'radio_np' => $responses[0]->radio_np,
+    'question_a' => $question_a,
+    'question_b' => $question_b,
+    'response_a' => $response_a,
+    'response_b' => $response_b,
+    'radio_yes' => $yes_html,
+    'radio_np' => $np_html,
+    'first_name' => $first_name,
+    'last_name' => $last_name,
+    'date' => $date,
+    'journal_image' => $journal_image
   ));
   $dompdf = new DOMPDF();
   $dompdf->load_html($html);
   $dompdf->render();
-  $dompdf->stream("sample.pdf");
+  $dompdf->stream($journal_name);
   exit;
 }

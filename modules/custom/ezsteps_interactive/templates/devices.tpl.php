@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" type="text/css" href="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/css/easysteps.css"/>
-<script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+
+ <script type="text/javascript" src="../../../misc/jquery.js?v=1.4.4"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/devicedrag.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery.ui.touch-punch.min.js"></script>
@@ -13,7 +14,7 @@
     <ul class="draggable">
       <li id="mouse">Mouse</li>
       <li id="cpu">CPU</li>
-      <li id="dvd">CD/DVD Drive</li>
+      <li id="dvd">CD&#47;DVD Drive</li>
       <li id="keyb">Keyboard</li>
       <li id="monitor">Monitor</li>
     </ul>
@@ -51,4 +52,4 @@
     <div id="feedback_text"><span id="feedback_word"></span><span id="feedback_blurb"></span></div>
     <div class="clear-both"></div>
   </div>
-</div>
+

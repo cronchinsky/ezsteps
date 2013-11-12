@@ -9,6 +9,10 @@ function ezsteps_preprocess_field($variables, $hook) {
   if ($variables['element']['#field_name'] == 'field_module_objectives') {
     drupal_add_js(drupal_get_path('theme','ezsteps') . '/js/learn-more-hover.js');	
   }
+  if ($variables['element']['#field_name'] == 'field_activity_video_hosted') {
+    //drupal_add_js('http://admin.brightcove.com/js/BrightcoveExperiences.js', 'external');
+    //drupal_add_js(drupal_get_path('theme','ezsteps') . '/js/ezstepsBrightcove.js', array('type' => 'inline', );	
+  }
 }
 
 /**

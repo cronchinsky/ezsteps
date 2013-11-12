@@ -10,9 +10,10 @@ function ezsteps_quiz_node_view($node) {
     drupal_add_js(drupal_get_path('module', 'ezsteps_quiz') . '/js/quiz.js');
     
     $form = drupal_get_form('ezsteps_quiz_open_ended_form', $node);
-
-    // We want them all to show up as 'Self Check'
-    $node->content['form'] = array(
+    
+    // Add the open ended and radio questions to the empty field so it will display in 
+    // the tab
+    $node->content['field_quiz_journal_form'] = array(
       '#markup' => render($form),
     );
   }
@@ -60,7 +61,7 @@ function ezsteps_quiz_open_ended_form($form, $form_state, $node) {
 
 function ezsteps_quiz_open_ended_form_submit($form, &$form_state) {
   global $user;
-  
+
   // go through the radio questions and separate into yes and needs practice responses
   //
   $i = 0;
@@ -70,24 +71,23 @@ function ezsteps_quiz_open_ended_form_submit($form, &$form_state) {
 	  
 	 if (is_int($key)) {
 		  if ($radio_prompt['#value'] == '0') {
-			  $needs_practice .= $radio_prompt['#title'] . ',';
+			  $needs_practice .= $radio_prompt['#title'] . '|';
 		  } else {
-			  $yes .= $radio_prompt['#title'] . ',';
+			  $yes .= $radio_prompt['#title'] . '|';
 		  }
 		  $i++;
       }
   }
   
-  
-  $response = $form['open_ended']['text']['20']['#value'];
-  $response_b = $form['open_ended']['text']['21']['#value'];
+  $response_a = (empty($form['open_ended']['text']['20']['#value']) ? '' : $form['open_ended']['text']['20']['#value']);
+  $response_b = (empty($form['open_ended']['text']['21']['#value']) ? '' : $form['open_ended']['text']['21']['#value']);
   $query = db_merge('ezsteps_quiz_response')
       ->key(array(
         'uid' => $user->uid,
         'module_num' => arg(1),
       ))
       ->fields(array(
-        'response_a' => $response_b,
+        'response_a' => $response_a,
         'response_b' => $response_b,
         'radio_yes' => $yes,
         'radio_np' => $needs_practice,

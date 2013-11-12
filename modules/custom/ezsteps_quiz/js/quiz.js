@@ -3,6 +3,8 @@
   // Constructor function for the Quiz "class"
   function Quiz(selector) {
 
+	this.intro = '';
+
     // This will hold an array of questions.
     this.questions = [];
 
@@ -16,12 +18,9 @@
     this.$dataWrapper = $(selector);
     
     // A newly constructed div for containing the quiz.
-    this.$wrapper = $('<div class="ezsteps-quiz-wrapper"></div>').insertBefore('.node-quiz .content');
-    
-    // The open ended question form.
-    //this.$form = this.$dataWrapper.find('form').clone();
-    
-     this.$form = this.$dataWrapper.find('form').clone();
+    this.$wrapper = $('<div class="ezsteps-quiz-wrapper"></div>').insertBefore('.node-quiz .fieldset-wrapper');
+        
+    this.$form = this.$dataWrapper.find('form').clone();
 
     
     // Load the quiz data from the HTML that Drupal prints on the page.
@@ -42,6 +41,8 @@
     this.numQuestions = $questions.length;
     
     var quiz = this;
+    quiz.intro = $('.field-name-field-quiz-intro-text > .field-items > div').html();
+    
     $.each($questions, function (index, questionDiv) {
       
       // Create a question object and set the prompt based on the printed field value.
@@ -100,8 +101,7 @@
       
       // Replace the quiz content with the open ended form.
       $(this).html('');
-      //quiz.$wrapper.append(quiz.$form);
-      
+          
       quiz.$wrapper.append(quiz.$form);
 
       
@@ -114,7 +114,7 @@
   Quiz.prototype.correct = function () {
     
     // Add a next button to the quiz that calls Quiz.next() when clicked.
-    var $nextButton = $('<a id="next" href="#">Next >></a>');
+    var $nextButton = $('<a id="next" href="#">Next</a>');
     var quiz = this;
     if ($('#next').length == 0) {
 	    $div = $('<div class="ezsteps-quiz-next-wrapper"></div>');
@@ -145,6 +145,13 @@
       var question = quiz.questions[quiz.currentQuestion];
       var number = quiz.currentQuestion + 1;
       
+      // Show the intro text for just the first question
+      if (number == 1) {
+	      $wrapper.before('<div class="ezsteps-quiz-intro">' + quiz.intro + '</div>');
+      }  else {
+	      $('.ezsteps-quiz-intro').css('display','none');
+      } 
+      
       $wrapper.append('<div class="ezsteps-quiz-no">Question ' + number + '</div>');  
       
       // Add div for the prompt.
@@ -162,10 +169,15 @@
         $answerLink.data('feedback', answer.feedback);
         
         // When the user clicks on an answer, display the feedback, and if they
-        // got it correct, call the correct function.
+        // got it correct, call the correct function. Also manage the active link and 
+        // correct & incorrect icons
         $answerLink.click(function () {
+          $('.ezsteps-quiz-feedback').removeClass('correct');
+          $('.ezsteps-quiz-answer-link a').removeClass('active');
+          $(this).addClass('active');
           quiz.feedback($(this).data('feedback'));
           if ($(this).data('correct')) {
+            $('.ezsteps-quiz-feedback').addClass('correct');
             quiz.correct();
           }
           return false;
@@ -186,7 +198,8 @@
   // Once the dom is loaded, instantiate the quiz on the node's content.
   Drupal.behaviors.ezstepsQuiz = {
     attach: function () {
-      Drupal.ezstepsQuiz = new Quiz('.node-quiz .content');
+      //Drupal.ezstepsQuiz = new Quiz('.node-quiz .content');
+      Drupal.ezstepsQuiz = new Quiz('.node-quiz .fieldset-wrapper');
     }
   };
 })(jQuery);

@@ -27,9 +27,11 @@ a:link, a:visited {
 /** Top Block (title-y thing) **/
 .ezsteps-top-block {
   text-align: left;
-  padding: 30px;
-  padding-top: 17px;
-  padding-bottom: 30px;
+  padding: 17px 30px 30px 0;
+}
+
+.ezsteps-top-block.ezsteps-top-text-module-list {
+	padding-bottom: 0;
 }
 
 #ezsteps-top-header {
@@ -366,6 +368,14 @@ a:link, a:visited {
   background-image: url('../images/neo_sans/H1_M3.png');
 }
 
+#ezsteps-module-viewer.module-4 #ezsteps-module-viewer-controls-title  {
+  background-image: url('../images/neo_sans/H1_M4.png');
+}
+
+#ezsteps-module-viewer.module-5 #ezsteps-module-viewer-controls-title  {
+  background-image: url('../images/neo_sans/H1_M5.png');
+}
+
 .not-logged-in #ezsteps-module-viewer-controls-title {  
   left:0;
 }
@@ -465,8 +475,18 @@ a:link, a:visited {
 
 .field-name-field-activity-try-intro-text {
   font-size:1em;
-  width: 310px;
+  width: 520px;
 }
+
+/* remove padding for activities without a download item */
+#node-activity-61 .field-name-field-activity-try-intro-text,
+#node-activity-21 .field-name-field-activity-try-intro-text,
+#node-activity-24 .field-name-field-activity-try-intro-text,
+#node-activity-25 .field-name-field-activity-try-intro-text,
+#node-activity-27 .field-name-field-activity-try-intro-text {
+	width: 310px;
+}
+
 
 .group-activity-tab-try .field.field-name-field-activity-try-extra-link {
 	padding: 50px 25px;
@@ -513,13 +533,6 @@ a:link, a:visited {
 
 .group-activity-tab-try .field {
   padding: 0px 25px;
-}
-
-/* remove padding for activities without a download item */
-#node-activity-20 .field-name-field-activity-try-intro-text,
-#node-activity-31 .field-name-field-activity-try-intro-text,
-#node-activity-30 .field-name-field-activity-try-intro-text {
-	width: 520px;
 }
 
 .xx-group-activity-try-intro {
@@ -601,19 +614,27 @@ a:link, a:visited {
   font-weight: bold;
 }
 
-.group-activity-tabs ul.horizontal-tabs-list {
+.group-activity-tabs ul.horizontal-tabs-list,
+.group-quiz-tabs ul.horizontal-tabs-list {
   display:block;
   position:absolute;
   top:-43px;
 }
 
-.group-activity-tabs fieldset.field-group-htab {
+.group-activity-tabs fieldset.field-group-htab,
+.group-quiz-tabs fieldset.field-group-htab {
   width:100%;
   margin-bottom:0px;
 }
 
+.group-activity-tab-learn .field-items {
+	height: 480px;
+}
+
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button,
-.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button:hover {
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button:hover,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button:hover {
   float:right;
   border:0;
   width:185px;
@@ -644,6 +665,19 @@ a:link, a:visited {
  	text-indent: -9999px;
 }
 
+.node-quiz .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-0.selected, 
+.node-quiz .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-0:hover {
+ 	background: url('../images/neo_sans/Selfcheck-Tab_Active.png') no-repeat left 6px;
+ 	text-indent: -9999px;
+}
+
+.node-quiz .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-1.selected,
+.node-quiz .horizontal-tabs ul.horizontal-tabs-list li.horizontal-tab-button-1:hover {
+ 	background: url('../images/neo_sans/Selfcheck-Tab_Active.png') no-repeat left 6px;
+ 	text-indent: -9999px;
+}
+
+
 #internet-guidelines {
 	background-color:#d3d3d3;
 }
@@ -657,24 +691,32 @@ a:link, a:visited {
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:link,
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:hover,
 .group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:active,
-.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:visited {
+.group-activity-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:visited,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:link,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:hover,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:active,
+.group-quiz-tabs ul.horizontal-tabs-list li.horizontal-tab-button a:visited {
   background-color:inherit;
   color:white;
 }
 
-.group-activity-tabs ul.horizontal-tabs-list .selected strong {
+.group-activity-tabs ul.horizontal-tabs-list .selected strong,
+.group-quiz-tabs ul.horizontal-tabs-list .selected strong {
   color:white;
 }
-.group-activity-tabs ul.horizontal-tabs-list {
+.group-activity-tabs ul.horizontal-tabs-list,
+.group-quiz-tabs ul.horizontal-tabs-list {
   background-color:white;
   border-width:0px;
 }
 
-.group-activity-tabs .horizontal-tabs {
+.group-activity-tabs .horizontal-tabs,
+.group-quiz-tabs .horizontal-tabs {
   border:none;
 }
 
-.group-activity-tabs .horizontal-tabs-panes {
+.group-activity-tabs .horizontal-tabs-panes,
+.group-quiz-tabs .horizontal-tabs-panes {
   border:11px solid #858688;
 }
 
@@ -778,7 +820,7 @@ a.ezsteps-module-viewer-help-link {
 /* Front Page */
 #region-sidebar-second .block {
   padding:15px;
-  border:1px solid black;
+  border:1px solid #ebebeb;
   margin-bottom:20px;
   width:261px;
 }
@@ -855,9 +897,19 @@ a.ezsteps-module-viewer-help-link {
 }
 
 .view-module-list {
-  width:422px;
-  margin-left:60px;
+  /* width:450px; */
+  margin-left:8px;
   margin-bottom:35px;
+  /* margin-top: -65px; */
+}
+
+.view-module-list .view-header {
+	width: 460px;
+}
+.view-module-list .view-content {
+	width: 430px;
+	margin-left: 30px;
+	padding-top: 10px;
 }
 .view-module-list .views-field-nothing {
   float:right;
@@ -969,9 +1021,25 @@ a.ezsteps-video-control {
 
 /** Self Check **/
 .ezsteps-quiz-wrapper  {
-	min-height: 350px;
+	min-height: 250px;
+	background-color: #ffffff;
+	padding: 30px 30px 0 30px;
 }
 
+.ezsteps-quiz-intro {
+	background-color: #0071C5;
+	color: white;
+	padding: 20px 30px 10px 30px;
+}
+
+.ezsteps-quiz-intro h3 {
+	font-size: 1.3em;
+	margin-bottom: 10px;
+}
+
+.ezsteps-quiz-intro p {
+	font-size: 1.2em;
+}
 
 form#ezsteps-quiz-open-ended-form {
 	padding-bottom: 20px;
@@ -980,39 +1048,95 @@ form#ezsteps-quiz-open-ended-form {
 .ezsteps-quiz-no {
 	font-weight: bold;
 	font-size: 1.3em;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
+	color: #0071C5;
 }
 
 .ezsteps-quiz-prompt {
 	font-size: 1.3em
 }
 
+.ezsteps-quiz-image {
+	float: right;
+	margin-right: 140px;
+	margin-top: -10px;
+	padding-bottom: 40px;
+}
+
 .ezsteps-quiz-answer-link {
-	padding-left: 20px;
+	padding-left: 10px;
 	font-size: 1.2em;
+/*
+	background-image:url("../images/radio-buttons_flush.png");
+	background-position: 0 0;
+	background-repeat:no-repeat;
+*/
+}
+
+.ezsteps-quiz-answer-link a {
+	text-decoration: none;
+}
+
+.ezsteps-quiz-answer-link a:hover {
+	text-decoration: underline;
+}
+
+/*
+span.radio-button {
+    background-image:url("../images/radio-buttons_flush.png");
+	background-position: 0 0;
+	background-repeat:no-repeat;
+	width: 16px;
+	height: 16px;
+}
+*/
+.ezsteps-quiz-answer-link a.active {
+	font-weight: bold;
+	color: black;
 }
 
 .ezsteps-quiz-feedback {
 	margin-top: 20px;
 	font-size: 1.2em;
+	padding-left: 45px;
+	font-weight: bold;
+	background-image:url("../images/X-mark-icon.png");
+	background-position: 0 -7px;
+	background-repeat:no-repeat;
+}
+
+.ezsteps-quiz-feedback.correct {
+	clear: right;
+	background-image:url("../images/check-mark-icon.png");
+	background-position: 0 -7px;
 }
 
 .ezsteps-quiz-next-wrapper {
-	text-align: right;
+	  float: right;
+	  color:white;
+	  text-shadow:none;
+	  border-radius:5px;
+	  background-color:#0071c5;
+	  background-image:none;
+	  padding:5px 15px;
+	  margin-bottom: 20px;
 }
 
-.ezsteps-quiz-next-wrapper a:link {
+.ezsteps-quiz-next-wrapper a {
 	text-decoration: none;
+	color: white;
 }
 
 .ezsteps-quiz-next-wrapper a:hover {
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 form#ezsteps-quiz-open-ended-form #ezsteps-radio-prompt {
 	float: left;
 	width: 285px;
-	height: 20px;
+	min-height: 20px;
+	line-height: 14px;
+	margin-bottom: 10px;
 	clear: left;
 }
 
@@ -1030,11 +1154,26 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 
 /* complete page */
 
+#ezsteps-complete-page-wrapper h3 {
+	margin-top: 12px;
+	font-size: 1.2em;
+}
+#ezsteps-complete-page-content {
+	min-height: 220px;
+}
+
+#ezsteps-complete-page-content span.less-than {
+	float: left;
+	height: 200px;
+	margin-right: 14px;
+	padding-top: 18px;
+}
+
 a.ezsteps-complete-page-certificate-link  {
 	background: url('../images/EZ-Steps-Journal-Icon.png') no-repeat left center;
 	padding-left: 85px;
 	padding-top: 18px;
-	width: 160px;
+	width: 300px;
 	height: 75px;
 	display: block;
 	text-decoration: none;
@@ -1073,7 +1212,7 @@ a.ezsteps-complete-page-certificate-link  {
 }
 #ezsteps-module-viewer-persona-select-form {
    float:right;
-   margin: -394px 0 20px 20px;
+   margin: -364px 0 20px 20px;
    width: 330px;
 }
 #ezsteps-module-viewer-persona-select-form .form-item, 
@@ -1089,6 +1228,7 @@ a.ezsteps-complete-page-certificate-link  {
    min-height: 40px;
    padding: 18px 0 0 48px;
    font-weight: bold;
+   margin-left: 22px;
 }
 #ezsteps-module-viewer-persona-select-form label[for="edit-persona"] {
    background: url('../images/bl-circle-2.png') no-repeat left top;
@@ -1132,6 +1272,7 @@ a.ezsteps-complete-page-certificate-link  {
 
 body.node-type-interactive {
 	background-color: white;
+	
 }
 
 .node-type-interactive header {
@@ -1200,7 +1341,21 @@ form#user-profile-form div.password-suggestions ul {
 
 /*submit button hover state*/
 form#user-register-form input.form-submit:hover,
+form#user-pass input.form-submit:hover,
 form#user-profile-form input.form-submit:hover {
 	background-color: #0071c5; 
+}
+
+/*colorbox*/
+
+#colorbox {
+
+}
+#cboxWrapper: {
+	
+}
+#cboxContent {
+
+
 }
 

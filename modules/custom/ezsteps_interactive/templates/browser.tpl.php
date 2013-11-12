@@ -1,6 +1,7 @@
 	
 <link rel="stylesheet" type="text/css" href="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/css/easysteps.css"/>
-<script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+
+<script type="text/javascript" src="../../../misc/jquery.js?v=1.4.4"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/browserdrag.js"></script>
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery.ui.touch-punch.min.js"></script>
