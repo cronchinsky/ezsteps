@@ -26,15 +26,7 @@ function ezsteps_glue_menu() {
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
-  
-/*
-  $items['terms'] = array(
-    'access callback' => TRUE,
-    'page callback' => 'ezsteps_glue_terms_page',
-    'title' => t('Terms and Conditions'),
-  );
-*/
-
+ 
   return $items;
 }
 
@@ -131,6 +123,20 @@ function ezsteps_glue_form_user_register_form_alter(&$form, &$form_state) {
 }
 
 /**
+ * A form alter and submit handler function for the password reset to 
+ * send the user to the home page after a password reset request.
+ */
+function ezsteps_glue_form_user_pass_alter(&$form, &$form_state, $form_id) { 
+
+	$form['actions']['submit']['#submit'][] = '_ezsteps_glue_form_user_pass_custom_submit';    
+}
+
+function _ezsteps_glue_form_user_pass_custom_submit($form, &$form_state) {
+    $form_state['redirect'] = array('home');
+    drupal_set_message(t('Further instructions have been sent to your email address.'));
+}
+
+/**
  * A validate function for the registration form, though it doesn't actually
  * validate anything.  Instead, we just dump the email field into the username
  * field so that everything else will validate later on.
@@ -185,12 +191,3 @@ function ezsteps_glue_admin() {
 function ezsteps_glue_form_user_profile_form_alter(&$form, &$form_state) {
 	hide($form['field_user_persona']);
 }
-
-/*
-function ezsteps_glue_terms_page() {
-
-	return "<h2>These will be the Terms and Conditions</h2><p>Either a custom page or will use the Legal module</p>";
-	
-	
-}
-*/

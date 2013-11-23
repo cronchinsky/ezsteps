@@ -1162,9 +1162,13 @@ form#ezsteps-quiz-open-ended-form #ezsteps-open-ended-prompt {
 	min-height: 220px;
 }
 
+#ezsteps-complete-page-content p {
+	clear: left;
+}
+
 #ezsteps-complete-page-content span.less-than {
 	float: left;
-	height: 200px;
+	height: 100px;
 	margin-right: 14px;
 	padding-top: 18px;
 }
@@ -1342,7 +1346,9 @@ form#user-profile-form div.password-suggestions ul {
 /*submit button hover state*/
 form#user-register-form input.form-submit:hover,
 form#user-pass input.form-submit:hover,
-form#user-profile-form input.form-submit:hover {
+form#user-profile-form input.form-submit:hover,
+form#user-login input.form-submit:hover,
+form#user-pass-reset input.form-submit:hover {
 	background-color: #0071c5; 
 }
 
