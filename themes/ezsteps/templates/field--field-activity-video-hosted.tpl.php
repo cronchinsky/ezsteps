@@ -43,7 +43,8 @@
  */
 ?>
 <script type="text/javascript">
-
+        // Use Brightcove API to issue pause and play commands to the video player
+        // For some reason, this only works when loaded inline
    	    var onTemplateLoad, onTemplateReady, player, videoPlayer, currPos;
 		var APIModules, mediaEvent, contentEvent;
 	    //console.log('loaded brigthcove js');
@@ -65,33 +66,33 @@
 	        videoPlayer.addEventListener(brightcove.api.events.MediaEvent.PLAY, onMediaEventFired);
 	        videoPlayer.addEventListener(brightcove.api.events.MediaEvent.PROGRESS, onMediaEventFired);
 	        //console.log('template ready');
-	    }
-	    
-		
+	    }		
 	    function onMediaEventFired(evt) {
 	        // alert(evt.type);
 			if (evt.type == "mediaStop") {
 				currPos = evt.position;
 	        }
-		}
-	
+		}	
 	    function pauseVideo() {
 	        videoPlayer.getIsPlaying( function(isPlaying) {
 		      if (isPlaying == true) {
 			    videoPlayer.pause();
-			    console.log('pausing');
+			    //console.log('pausing');
 			  }
 	        });
 	    }
-		
+	    function toggleVideo ()	{
+	        videoPlayer.getIsPlaying( function(isPlaying) {
+		      if (isPlaying == true) {
+			    videoPlayer.pause();
+			  } else {
+				  videoPlayer.play();
+			  }
+	        });
+	    }	
 	    function playVideo() {
 	        videoPlayer.play();
 	    }
-	    
-	    function inPlayingHandler () {
-		    alert('playing');
-	    }
-
 </script>
 
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -103,4 +104,11 @@
       <div class="field-item <?php print $delta % 2 ? 'odd' : 'even'; ?>"<?php print $item_attributes[$delta]; ?>><?php print render($item); ?></div>
     <?php endforeach; ?>
   </div>
+<!-- custom play button -->
+<!--
+  <div id="ezsteps-video-controls-brightcove">
+    <a href="#" id="ezsteps-video-play-pause" class="ezsteps-paused ezsteps-video-control">Play</a>
+  </div>
+-->
 </div>
+

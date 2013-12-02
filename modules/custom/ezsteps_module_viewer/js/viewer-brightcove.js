@@ -19,7 +19,6 @@
         	// should we restart the video?
         	window.location.hash = "";
       });
-
       
       // return user to the try tab when closing an interactive
       $("a.colorbox-load").colorbox({
@@ -27,6 +26,7 @@
 		      $('.horizontal-tab-button.first a').click();
         },
       });
+      
     }
   };
 })(jQuery);

@@ -1018,6 +1018,21 @@ a.ezsteps-video-control {
   height:200px;
 }
 
+#ezsteps-video-controls-brightcove {
+	background-image:url("../images/video-play-btn-big.png");
+	background-position: center;
+	background-repeat:no-repeat;
+	height: 480px;
+	width: 640px;
+	position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#ezsteps-video-controls-brightcove a#ezsteps-video-play-pause {
+	height: 480px;
+	width: 640px;
+}
 
 /** Self Check **/
 .ezsteps-quiz-wrapper  {

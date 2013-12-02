@@ -2,6 +2,7 @@
   Drupal.behaviors.ezstepsVideoControls = {
     attach: function () {
       
+
       var playerId = $('.field-name-field-activity-video .jwplayer').attr('id');
       var player = jwplayer(playerId);
       player.setControls(false);
@@ -23,6 +24,7 @@
        
         return false;
       }
+
      
       $('#ezsteps-video-controls').hide();
       $('.field-name-field-activity-video, .field-name-field-start-here-video').hover(function () {
@@ -31,6 +33,7 @@
         $(this).find('#ezsteps-video-controls').fadeOut(100);
       });
      
+
       $('#ezsteps-video-play-pause').click(function () {
           togglePlayer();
         });
@@ -51,6 +54,7 @@
         player.seek(0);
       });
       
+
       player.onDisplayClick(function () {
         togglePlayer(true);
       });
