@@ -21,16 +21,24 @@
     this.$wrapper = $('<div class="ezsteps-quiz-wrapper"></div>').insertBefore('.node-quiz .fieldset-wrapper');
         
     this.$form = this.$dataWrapper.find('form').clone();
-
     
-    // Load the quiz data from the HTML that Drupal prints on the page.
-    this.loadData();
-
-    // Remove all of the quiz data html.
-    this.removeHtml();
-    
-    // Start the quiz.
-    this.start();
+    if ($('.messages.error').length == 0) {
+	    // Load the quiz data from the HTML that Drupal prints on the page.
+	    this.loadData();
+	  	
+	  	// Remove all of the quiz data html.
+	    this.removeHtml();
+	    
+	    // Start the quiz.
+	    this.start();
+	    
+    } else {
+        // there were error messages, so some required journal fields were not entered
+        // just display the journal form
+        this.removeHtml();
+	    
+	    this.done();
+    }
   }
 
   // Loads the data from the HTML quiz information.

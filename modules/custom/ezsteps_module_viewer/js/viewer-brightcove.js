@@ -2,6 +2,7 @@
   Drupal.behaviors.ezstepsTabOpen = {
     attach: function () {
       
+      //alert(window.location.href);
       //alert(window.location.hash);
       // only go to the learn tab if there is nothing in the query string/a poll   
       if (!(window.location.hash)) {
