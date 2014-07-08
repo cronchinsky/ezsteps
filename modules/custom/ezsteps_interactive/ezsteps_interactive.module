@@ -16,9 +16,14 @@ function ezsteps_interactive_node_view($node) {
           // Add quiz specific js / css here.
           $interactive = theme('devices', array('interactive_text' => $interactive_text));
           break;		
+		  
+		case 'spam':
+          // Add quiz specific js / css here.
+          $interactive = theme('spam', array('interactive_text' => $interactive_text));
+          break;
       }
-      
-      // Add the quiz to the node.
+	
+	 // Add the quiz to the node.
       $node->content['interactive'] = array(
         '#markup' => $interactive,
       );
@@ -35,6 +40,11 @@ function ezsteps_interactive_theme() {
   $items['devices'] = array(
     'variables' => array('interactive_text', NULL),
     'template' => 'templates/devices',
+	);
+	
+ $items['spam'] = array(
+    'variables' => array('interactive_text', NULL),
+    'template' => 'templates/spam',
   );
   return $items;
 }

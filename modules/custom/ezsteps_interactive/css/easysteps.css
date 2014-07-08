@@ -81,7 +81,7 @@ a:hover {
 #directions, #help {
 	margin: 20px 20px 20px 47px;
 }
-#feedback {
+#feedback, #scam_feedback {
 	float: left;
 
 	height: 60px;
@@ -290,4 +290,118 @@ a:hover {
 .monitor_hover {
 	background:url(../images/computer_parts/computer-parts.png) -800px -133px no-repeat;
 	
+}
+
+/*
+ * Spam Email Interactive
+ */
+
+#email_container {
+	overflow: hidden;
+	position: relative;
+}
+#spam_email {
+	background: url(../images/spam_email/MainImage-610.png) 0px 0px no-repeat white;
+	
+	float: left;
+	border: 1px solid #666;
+	margin-left: 45px;
+	width: 610px;
+	height: 458px;
+	box-shadow:  5px 5px 5px rgba(0,0,0,0.2);
+}
+
+
+#answer_container {
+	float: left;
+	margin: 0px 10px 0px 20px;
+	
+}
+#answer_container p {
+	margin: 0px;
+	padding: 0px;
+	line-height: 1.2em;
+	font-size: 12px;
+
+}
+#answer_container div {
+	border: 2px dashed grey;
+	background-color: #e8b8b8;
+	padding: 8px 10px 10px 10px;
+	width: 195px;
+	margin-bottom: 15px;
+	opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
+    
+
+}
+
+#answer_container h3 {
+	font-weight: bold;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+.invisible_answer {
+	visibility: hidden;
+
+}
+.visible_answer {
+	 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	  visibility: visible;
+}
+#spam_email div {
+	
+	cursor: pointer;
+	position: absolute;
+	height: 16px;
+    left: 77px; /*30px;*/
+    border: 2px solid rgba(0,0,0,0);
+	
+	/*background-color: rgba(242,230,232,0.5);
+	border: 2px dashed #a05d66;*/
+	
+}
+
+#spam_email div.found {
+	background-color: rgba(242,230,232,0.5);
+	border: 2px dashed #a05d66;
+
+}
+
+#sender1 {
+	width: 360px;
+	top: 42px;
+}
+#awkward2 {
+	width: 155px;
+	top: 190px; /*168px;*/
+}
+#spam_email div#spelling3 {
+	width: 550px;
+	height: 36px; 
+	top: 230px; /*190px;*/
+}
+#website4{
+	width: 325px;
+	top: 305px; /*225px;*/
+}
+#alarmist5 {
+	width: 536px;
+	top: 342px;
+}
+
+#scam_feedback {
+	margin-top: -60px;
+	margin-left: 40px;
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{	
+	#scam_feedback {
+	
+		position: absolute;
+		margin-top: 460px;
+	}
 }
