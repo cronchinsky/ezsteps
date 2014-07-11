@@ -13,6 +13,7 @@
       <?php endforeach; ?>
     </span>
   </div>
+  
   <div id="ezsteps-viewer-activity">
     <?php print $content; ?>
   </div>

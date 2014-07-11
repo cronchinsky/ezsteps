@@ -273,6 +273,12 @@ function ezsteps_module_viewer_block_info() {
   $blocks['persona'] = array(
     'info' => t('Persona Block'),
   );
+  $blocks['mobile'] = array(
+    'info' => t('Mobile Block'),
+  );
+  $blocks['activity'] = array(
+    'info' => t('Activity Card Block'),
+  );
 
   return $blocks;
 }
@@ -280,24 +286,15 @@ function ezsteps_module_viewer_block_info() {
 /**
  * Implements hook_block_view().
  * 
- * Contains the function that builds the content for the persona block.
+ * Contains the function that builds the content for the persona and mobile blocks.
  */
 function ezsteps_module_viewer_block_view($delta) {
 
   switch ($delta) {
     case 'persona':
-
-      // Get the module.
-      $module = ezsteps_glue_get_module_by_number(arg(1));
-
-      ezsteps_module_viewer_set_persona_cookie($module->field_module_number[LANGUAGE_NONE][0]['value']);
-      // Get the step number.
-      $step_num = arg(2);
-      $step = empty($step_num) ? 0 : $step_num;
-
+   
       // Get the activity node.
-      $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
-      $activity = node_load($activity_nid);
+      $activity = ezsteps_module_viewer_get_activity();
 
       if (!empty($activity->field_activity_persona_content[LANGUAGE_NONE])) {
 
@@ -327,7 +324,39 @@ function ezsteps_module_viewer_block_view($delta) {
           );
         }
       }
+      break;
+    case 'mobile':   
+      $activity = ezsteps_module_viewer_get_activity();
+      if ($output = field_view_field('node', $activity, 'field_activity_mobile', array('label' => 'hidden'))) {
+        return array(
+          'subject' => t('Mobile <br /> Connections'),
+          'content' => $output,
+        );
+      }
+      break; 
+    case 'activity':   
+      $activity = ezsteps_module_viewer_get_activity();
+      dsm($activity);
+      if ($output = field_view_field('node', $activity, 'field_activity_card', array('label' => 'hidden'))) {       
+        return array(
+          'subject' => '',
+          'content' => $output,
+        );
+      }
+      break;    
   }
+}
+
+function ezsteps_module_viewer_get_activity() {
+	  // Get the module.
+      $module = ezsteps_glue_get_module_by_number(arg(1));
+      // Get the step number.
+      $step_num = arg(2);
+      $step = empty($step_num) ? 0 : $step_num;
+
+      // Get the activity node.
+      $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
+      return node_load($activity_nid);
 }
 
 /**

@@ -386,7 +386,7 @@ a:link, a:visited {
 
 
 /** Persona **/
-.block-ezsteps-module-viewer {
+.block-ezsteps-module-viewer-persona {
   margin-top:100px;
 }
 
@@ -399,17 +399,74 @@ a:link, a:visited {
 }
 */
 
-.block-ezsteps-module-viewer .field-name-field-collection-text {
+.block-ezsteps-module-viewer-persona .field-name-field-collection-text {
 	margin-left: 5px;
 }
 
-.block-ezsteps-module-viewer .field-name-field-persona-picture {
+.block-ezsteps-module-viewer-persona .field-name-field-persona-picture {
 	margin-left: -30px;
 }
 
-.block-ezsteps-module-viewer .node-persona {
+.block-ezsteps-module-viewer-persona .node-persona {
 	padding-bottom: 0;
 }
+
+
+.block-ezsteps-module-viewer-mobile {
+  	margin: 45px 0 0 5px;
+  	border-top: 1px solid #dadada;
+  	border-bottom: 1px solid #dadada;
+  	width: 185px;
+}
+
+.block-ezsteps-module-viewer-mobile h2.block-title {
+  	font-size: 18px;
+  	line-height: 18px;
+  	padding-left: 40px;
+  	color: #858688;
+  	background: url('../images/icon-mobile-sprite.png') no-repeat 0 0px;
+  	margin: 15px 0 10px 20px;
+}
+
+.block-ezsteps-module-viewer-mobile h2.block-title:hover {
+  	color: #0071c5;
+  	background-position: 0 -37px;
+}
+
+.block-ezsteps-module-viewer-mobile p {
+	font-family: "neo-sans-intel",sans-serif;
+    font-size: 13px;
+    line-height: 21px;
+    margin-bottom: 15px;   
+}
+
+
+.block-ezsteps-module-viewer-activity {
+  	margin: -1px 0 0 5px;
+  	border-top: 1px solid #dadada;
+  	border-bottom: 1px solid #dadada;
+  	width: 185px;
+  	line-height: 33px;
+}
+
+.block-ezsteps-module-viewer-activity a {
+  	font-family: "neo-sans-intel",sans-serif;
+  	font-size: 18px;
+  	letter-spacing: .75px;
+  	padding-left: 40px;
+  	color: #858688;
+  	background: url('../images/icon-activity-sprite.png') no-repeat 0 0px;
+  	margin: 15px 0 15px 20px;
+  	font-weight: bold;
+  	text-decoration: none;
+  	display: block;
+}
+
+.block-ezsteps-module-viewer-activity a:hover {
+  	color: #0071c5;
+  	background-position: 0 -33px;
+}
+
 .ezsteps-learn-more-hover-tip-middle {
   position:relative;
   top:20px;
