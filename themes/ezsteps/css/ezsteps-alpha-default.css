@@ -417,7 +417,7 @@ a:link, a:visited {
 
 
 .block-ezsteps-module-viewer-mobile {
-  	margin: 45px 0 0 5px;
+  	margin: 0 0 0 5px;
   	border-top: 1px solid #dadada;
   	border-bottom: 1px solid #dadada;
   	width: 185px;
@@ -510,6 +510,7 @@ a:link, a:visited {
   color:black;
   width: 150px;
   padding: 10px 20px 10px 15px;
+  margin-bottom: 45px;
 }
 
 .field-name-field-collection-text .field-item:after {
