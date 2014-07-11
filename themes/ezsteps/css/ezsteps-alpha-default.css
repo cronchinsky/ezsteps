@@ -424,7 +424,7 @@ a:link, a:visited {
   	line-height: 18px;
   	padding-left: 40px;
   	color: #858688;
-  	background: url('../images/icon-mobile-sprite.png') no-repeat 0 0px;
+  	background: url('../images/icon-mobile-sprite.png') no-repeat 0 0;
   	margin: 15px 0 10px 20px;
 }
 
@@ -449,13 +449,13 @@ a:link, a:visited {
   	line-height: 33px;
 }
 
-.block-ezsteps-module-viewer-activity a {
+.block-ezsteps-module-viewer-activity a.ezsteps-activity-card {
   	font-family: "neo-sans-intel",sans-serif;
   	font-size: 18px;
   	letter-spacing: .75px;
   	padding-left: 40px;
   	color: #858688;
-  	background: url('../images/icon-activity-sprite.png') no-repeat 0 0px;
+  	background: url('../images/icon-activity-sprite.png') no-repeat 0 0;
   	margin: 15px 0 15px 20px;
   	font-weight: bold;
   	text-decoration: none;

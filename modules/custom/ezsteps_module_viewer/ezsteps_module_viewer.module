@@ -336,7 +336,6 @@ function ezsteps_module_viewer_block_view($delta) {
       break; 
     case 'activity':   
       $activity = ezsteps_module_viewer_get_activity();
-      dsm($activity);
       if ($output = field_view_field('node', $activity, 'field_activity_card', array('label' => 'hidden'))) {       
         return array(
           'subject' => '',
