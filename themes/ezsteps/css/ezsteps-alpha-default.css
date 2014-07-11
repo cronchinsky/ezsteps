@@ -192,6 +192,10 @@ a:link, a:visited {
 
 
 /* Module Viewer */
+
+#ezsteps-module-viewer {
+	min-height: 645px;
+}
 /* Navigation */
 .ezsteps-viewer-navigation {
   margin-bottom: 20px;
