@@ -11,7 +11,9 @@
       
       // When you click the try tab, if the video is playing, pause it.
       $('.horizontal-tab-button.first a').click(function () {
-        	pauseVideo();
+        	if (typeof pauseVideo == 'function') { 
+				pauseVideo();
+  			}      	
             window.location.hash = "#try";
           	
       });
