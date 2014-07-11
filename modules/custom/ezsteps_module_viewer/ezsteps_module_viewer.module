@@ -213,7 +213,6 @@ function ezsteps_module_viewer_theme() {
  * Preprocess function for the ezsteps viewer.
  */
 function ezsteps_module_viewer_preprocess_ezsteps_viewer(&$variables) {
-  dsm($variables);
   // Check for XSS
   $variables['title'] = check_plain($variables['title']);
 
@@ -296,7 +295,6 @@ function ezsteps_module_viewer_block_view($delta) {
    
       // Get the activity node.
       $activity = ezsteps_module_viewer_get_activity();
-      dsm($activity);
       if (!empty($activity->field_activity_persona_content[LANGUAGE_NONE])) {
 
         // Get an array of field collection ids.
@@ -360,7 +358,6 @@ function ezsteps_module_viewer_get_activity() {
 
       // Get the activity node.
       $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
-      dsm($activity_nid);
       return node_load($activity_nid);
 }
 
