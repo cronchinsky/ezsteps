@@ -153,6 +153,7 @@ function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
   } else {
 	  drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') . '/js/viewer-brightcove.js');
   }
+  drupal_add_js(drupal_get_path('module', 'ezsteps_module_viewer') .'/js/blocks.js');
   // Set the persona.
   ezsteps_module_viewer_set_persona_cookie($module_num);
 
@@ -348,7 +349,10 @@ function ezsteps_module_viewer_block_view($delta) {
       break;    
   }
 }
-
+/**
+ * Returns the activity node for the current page
+ * 
+ */
 function ezsteps_module_viewer_get_activity() {
 	  // Get the module.
       $module = ezsteps_glue_get_module_by_number(arg(1));

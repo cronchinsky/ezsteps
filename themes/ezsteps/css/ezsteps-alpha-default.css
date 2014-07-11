@@ -431,6 +431,7 @@ a:link, a:visited {
 .block-ezsteps-module-viewer-mobile h2.block-title:hover {
   	color: #0071c5;
   	background-position: 0 -37px;
+  	cursor: pointer;
 }
 
 .block-ezsteps-module-viewer-mobile p {
@@ -438,6 +439,10 @@ a:link, a:visited {
     font-size: 13px;
     line-height: 21px;
     margin-bottom: 15px;   
+}
+
+.block-ezsteps-module-viewer-mobile a#ezsteps-mobile-close {
+	text-decoration: none;
 }
 
 
