@@ -37,6 +37,17 @@ $(document).ready(function () {
 	
 	incFeedback[4] = "Remember, the monitor is the display device of the computer, where the graphics would appear.";
 	
+	if (!Array.prototype.indexOf) {
+		
+		Array.prototype.indexOf = function(obj, start) {
+         for (var i = (start || 0), j = this.length; i < j; i++) {
+         if (this[i] === obj) { return i; }
+     }
+     return -1;
+}
+
+    }
+	
 	var isDown = false;
 	
 	   $(document).mousedown(function () {

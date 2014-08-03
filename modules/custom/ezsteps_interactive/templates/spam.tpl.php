@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/sites/ezsteps.edc.org/modules/custom/ezsteps_interactive/js/jquery.ui.touch-punch.min.js"></script>
 
 <div id="wrapper-browser">
-	<h2>Activity X: Learning to Identify Scam Emails</h2>
+	<h2>Activity 3: Learning to Identify Scam Emails</h2>
 	<p id="directions">Directions: Click on the parts of the email below that indicate this is a scam email.</p>
 	
 	<div id="field">

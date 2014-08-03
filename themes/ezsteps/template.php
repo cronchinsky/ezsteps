@@ -61,3 +61,18 @@ function ezsteps_file_link($variables) {
   $image_options = $options + array('html' => TRUE);
   return '<div class="file"><span class="ezsteps-icon-link">' . l($icon, $url, $image_options) . '</span> <span class="ezsteps-file-link">' . l($link_text, $url, $options) . '</span></div>';
 }
+
+/**
+ * Implements template_preprocess_html().
+ * 
+ * Adds header to prevent IE compatibility mode
+ */
+function ezsteps_preprocess_html(&$vars) {
+  // Send X-UA-Compatible HTTP header to force IE to use the most recent
+  // rendering engine or use Chrome's frame rendering engine if available.
+  // This also prevents the IE compatibility mode button to appear when using
+  // conditional classes on the html tag.
+  if (is_null(drupal_get_http_header('X-UA-Compatible'))) {
+    drupal_add_http_header('X-UA-Compatible', 'IE=edge,chrome=1');
+  }
+}

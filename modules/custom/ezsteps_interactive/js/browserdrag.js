@@ -26,6 +26,16 @@ $(document).ready(function () {
 	
 	incFeedback[4] = 'Remember, the Display Window is the area of the browser that displays the page you are viewing.';
 	
+		if (!Array.prototype.indexOf) {
+		
+		Array.prototype.indexOf = function(obj, start) {
+         for (var i = (start || 0), j = this.length; i < j; i++) {
+         if (this[i] === obj) { return i; }
+       }
+       return -1;
+       }
+
+    }
 	var isDown = false;
 	
 	   $(document).mousedown(function () {
