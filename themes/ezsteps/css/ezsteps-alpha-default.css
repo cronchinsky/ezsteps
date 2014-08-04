@@ -380,6 +380,14 @@ a:link, a:visited {
   background-image: url('../images/neo_sans/H1_M5.png');
 }
 
+#ezsteps-module-viewer.module-6 #ezsteps-module-viewer-controls-title  {
+  background-image: url('../images/neo_sans/H1_M6.png');
+}
+
+#ezsteps-module-viewer.module-7 #ezsteps-module-viewer-controls-title  {
+  background-image: url('../images/neo_sans/H1_M7.png');
+}
+
 .not-logged-in #ezsteps-module-viewer-controls-title {  
   left:0;
 }
@@ -469,6 +477,7 @@ a:link, a:visited {
   	font-weight: bold;
   	text-decoration: none;
   	display: block;
+  	white-space: nowrap;
 }
 
 .block-ezsteps-module-viewer-activity a:hover {
