@@ -123,13 +123,14 @@ function ezsteps_module_viewer_user_logout($account) {
  */
 function ezsteps_module_viewer_access($module_number) {
   $module = ezsteps_glue_get_module_by_number($module_number);
-
-  if ($module->field_module_number[LANGUAGE_NONE][0]['value'] == 0) {
-    return TRUE;
-  }
-  else {
-    // TRUE is user is logged in, otherwise they can't access the viewer
-  	return user_is_logged_in();
+  if ($module) {
+    if ($module->field_module_number[LANGUAGE_NONE][0]['value'] == 0) {
+     return TRUE;
+    }
+    else {
+      // TRUE is user is logged in, otherwise they can't access the viewer
+  	  return user_is_logged_in();
+    }
   }
 }
 
@@ -159,7 +160,6 @@ function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
 
   // Load the module
   $module = ezsteps_glue_get_module_by_number($module_num);
-
   // Parse out the nids of each step.  Prepare the activity_nid variable.
   $steps = array();
   $activity_nid = 0;
@@ -168,7 +168,7 @@ function ezsteps_module_viewer($module_num, $step_num, $try = FALSE) {
       $steps[] = $step['target_id'];
     }
     $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step_num]['target_id'];
-  }
+  } 
 
   // Flag this module as started.
   $flag = flag_get_flag('module_started');
@@ -214,54 +214,69 @@ function ezsteps_module_viewer_theme() {
  * Preprocess function for the ezsteps viewer.
  */
 function ezsteps_module_viewer_preprocess_ezsteps_viewer(&$variables) {
-  // Check for XSS
-  $variables['title'] = check_plain($variables['title']);
+  
+  // Check if the user has the content creator.
+  // quick way to allow for review of the content, and no edit link
+  global $user;
+  if (in_array('content creator', $user->roles)) {
+	$reviewer = true;
+  } else {
+	$reviewer = false;
+  }
 
-  // Figure out urls for forward and backward buttons.
-  $variables['module_number'] = $variables['module']->field_module_number[LANGUAGE_NONE][0]['value'];
-  $variables['title_img'] = drupal_html_class($variables['title'] . '-' . $variables['module_number']); 
-
-  // Prepare the titles for the cirlces.
-  if ($variables['steps']) {
-    $variables['titles'] = array();
-    $query = db_select('node', 'n');
-    $query->addField('n', 'title');
-    $query->join('field_data_field_module_activities', 'f', 'f.field_module_activities_target_id = n.nid');
-    $query->condition('f.entity_type', 'node');
-    $query->condition('f.entity_id', $variables['module']->nid);
-    $query->condition('nid', $variables['steps']);
-    $query->orderBy('f.delta');
-    $result = $query->execute()->fetchAll();
-    foreach ($result as $title) {
-      // @TODO for now, since we don't want to title every modules self check 'self check' or 'start here'
-      if (strpos($title->title,'Self Check') !== false) {
-	      $title->title = t('Self Check');
-      } else if (strpos($title->title,'Start Here') !== false) {
-	      $title->title = t('Start Here');
+  if (($variables['module']->status == 1) or (user_access('administer nodes')) or ($reviewer)) {
+	  // Check for XSS
+	  $variables['title'] = check_plain($variables['title']);
+	
+	  // Figure out urls for forward and backward buttons.
+	  $variables['module_number'] = $variables['module']->field_module_number[LANGUAGE_NONE][0]['value'];
+	  $variables['title_img'] = drupal_html_class($variables['title'] . '-' . $variables['module_number']); 
+	
+	  // Prepare the titles for the cirlces.
+	  if ($variables['steps']) {
+	    $variables['titles'] = array();
+	    $query = db_select('node', 'n');
+	    $query->addField('n', 'title');
+	    $query->join('field_data_field_module_activities', 'f', 'f.field_module_activities_target_id = n.nid');
+	    $query->condition('f.entity_type', 'node');
+	    $query->condition('f.entity_id', $variables['module']->nid);
+	    $query->condition('nid', $variables['steps']);
+	    $query->orderBy('f.delta');
+	    $result = $query->execute()->fetchAll();
+	    foreach ($result as $title) {
+	      // @TODO for now, since we don't want to title every modules self check 'self check' or 'start here'
+	      if (strpos($title->title,'Self Check') !== false) {
+		      $title->title = t('Self Check');
+	      } else if (strpos($title->title,'Start Here') !== false) {
+		      $title->title = t('Start Here');
+		  }
+	      $variables['titles'][] = check_plain($title->title);
+	    }
 	  }
-      $variables['titles'][] = check_plain($title->title);
-    }
-  }
+	
+	  $classes = array();
+	  foreach ($variables['steps'] as $step => $nid) {
+	    $classes[$step] = "ezsteps-nav-circle ezsteps-nav-circle-" . $step;
+	    if ($step == $variables['current_step']) {
+	      $classes[$step] .= " ezsteps-nav-circle-current";
+	    }
+	    if ($step == sizeof($variables['steps']) - 1) {
+	      $classes[$step] .= " ezsteps-nav-circle-last";
+	    }
+	  }
+	
+	  $variables['link_classes'] = $classes;
 
-  $classes = array();
-  foreach ($variables['steps'] as $step => $nid) {
-    $classes[$step] = "ezsteps-nav-circle ezsteps-nav-circle-" . $step;
-    if ($step == $variables['current_step']) {
-      $classes[$step] .= " ezsteps-nav-circle-current";
-    }
-    if ($step == sizeof($variables['steps']) - 1) {
-      $classes[$step] .= " ezsteps-nav-circle-last";
-    }
-  }
-
-  $variables['link_classes'] = $classes;
-
-  // Render the content of the page.
-  if (!empty($variables['activity_nid'])) {
-    $variables['content'] = render(node_view(node_load($variables['activity_nid'])));
-  }
-  else {
-    $variables['content'] = 'Page not found?';
+	  // Render the content of the page.
+	  if (!empty($variables['activity_nid'])) {
+	    $variables['content'] = render(node_view(node_load($variables['activity_nid'])));
+	  }
+	  else {
+	    $variables['content'] = 'Page not found?';
+	  }
+  } else {
+	  drupal_access_denied();
+	  exit();
   }
 }
 
@@ -356,13 +371,16 @@ function ezsteps_module_viewer_block_view($delta) {
 function ezsteps_module_viewer_get_activity() {
 	  // Get the module.
       $module = ezsteps_glue_get_module_by_number(arg(1));
-      // Get the step number.
-      $step_num = arg(2);
-      $step = empty($step_num) ? 0 : $step_num;
-
-      // Get the activity node.
-      $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
-      return node_load($activity_nid);
+      
+      if ($module) {
+	      // Get the step number.
+	      $step_num = arg(2);
+	      $step = empty($step_num) ? 0 : $step_num;
+	
+	      // Get the activity node.
+	      $activity_nid = $module->field_module_activities[LANGUAGE_NONE][$step]['target_id'];
+	      return node_load($activity_nid);
+      }
 }
 
 /**
@@ -410,7 +428,7 @@ function ezsteps_module_progress_redirect($module_num) {
 
   // If the user has started this module, send them to the appropriate page.
   $module = ezsteps_glue_get_module_by_number($module_num);
-
+  
   foreach ($module->field_module_activities[LANGUAGE_NONE] as $step => $activity) {
     if ($activity['target_id'] == $nid) {
       drupal_goto('module/' . $module_num . '/' . $step);
