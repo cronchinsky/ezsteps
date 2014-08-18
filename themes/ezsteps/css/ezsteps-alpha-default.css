@@ -508,6 +508,21 @@ a:link, a:visited {
   border-color:#939598 transparent; 
 }
 
+.view-module-list .views-row-last {
+  position: relative;
+}
+
+.views-row-last .ezsteps-learn-more-hover-tip {
+  left: 140px;
+  top: 0;
+}
+
+.views-row-last .ezsteps-learn-more-hover-tip-middle:after {
+  top: 40px;
+  left: -20px;
+  border-width: 20px 0px 0px 20px;
+}
+
 .ezsteps-learn-more-learn-how-to {
   font-weight:bold;
 }
